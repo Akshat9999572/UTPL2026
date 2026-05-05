@@ -76,7 +76,10 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollTo('#home')}>
             <img src={logoSrc} alt="UTPL Logo" className="h-12 w-12 object-contain rounded-full" />
-            <div className="font-display text-2xl text-white tracking-widest hidden sm:block">UTPL <span className="text-primary">2026</span></div>
+            <div className="hidden sm:flex flex-col leading-tight">
+              <span className="font-display text-lg md:text-xl text-white tracking-wider leading-none">Unnao Teachers' Premier League</span>
+              <span className="font-display text-base text-primary tracking-widest leading-none">2026</span>
+            </div>
           </div>
           
           <div className="hidden md:flex items-center gap-6">
