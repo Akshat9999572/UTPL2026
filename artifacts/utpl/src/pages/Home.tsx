@@ -6,7 +6,6 @@ import { Card, CardContent } from '@/components/ui/card';
 
 // Images (Relative to BASE_URL)
 const baseUrl = import.meta.env.BASE_URL;
-const logoSrc = `${baseUrl}utpl-logo.png`;
 const stadiumSrc = `${baseUrl}images/stadium.png`;
 const teamLogos = [
   `${baseUrl}images/team-1.png`,
@@ -75,7 +74,9 @@ export default function Home() {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-secondary/95 backdrop-blur-md shadow-lg py-2' : 'bg-secondary py-4'}`}>
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollTo('#home')}>
-            <img src={logoSrc} alt="UTPL Logo" className="h-12 w-12 object-contain" />
+            <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+              <Trophy className="w-6 h-6 text-secondary" />
+            </div>
             <div className="font-display text-2xl text-white tracking-widest hidden sm:block">UTPL <span className="text-primary">2026</span></div>
           </div>
           
@@ -162,9 +163,20 @@ export default function Home() {
             viewport={{ once: true }}
             className="relative flex justify-center items-center lg:justify-end"
           >
-            <div className="absolute w-[120%] h-[120%] rounded-full border-2 border-primary/20 animate-spin-slow pointer-events-none border-dashed"></div>
+            <div className="absolute w-[120%] h-[120%] rounded-full border-2 border-primary/20 pointer-events-none border-dashed" style={{ animation: 'spin 30s linear infinite' }}></div>
             <div className="absolute w-[100%] h-[100%] rounded-full border-4 border-primary/10 pointer-events-none"></div>
-            <img src={logoSrc} alt="UTPL Logo Large" className="w-full max-w-[400px] lg:max-w-[500px] drop-shadow-[0_0_50px_rgba(245,166,35,0.3)] relative z-10" />
+            <div className="relative z-10 w-[320px] h-[320px] lg:w-[420px] lg:h-[420px] rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border-4 border-primary/40 flex flex-col items-center justify-center drop-shadow-[0_0_50px_rgba(245,166,35,0.3)] gap-3 p-8">
+              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center mb-2">
+                <Trophy className="w-10 h-10 text-secondary" />
+              </div>
+              <div className="text-center">
+                <div className="font-display text-4xl lg:text-5xl text-primary tracking-widest leading-none">UNNAO</div>
+                <div className="font-display text-2xl lg:text-3xl text-white tracking-widest leading-none">TEACHERS'</div>
+                <div className="w-full h-[2px] bg-primary my-2"></div>
+                <div className="font-display text-base lg:text-lg text-white/80 tracking-[0.3em] leading-none">PREMIER LEAGUE</div>
+                <div className="font-display text-5xl lg:text-6xl text-primary/30 tracking-widest leading-none mt-2">2026</div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -501,7 +513,12 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="bg-secondary text-white py-12 border-t-8 border-primary">
         <div className="container mx-auto px-4 text-center">
-          <img src={logoSrc} alt="UTPL Logo" className="h-20 w-auto mx-auto mb-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <div className="h-12 w-12 rounded-full bg-primary/20 border-2 border-primary/40 flex items-center justify-center">
+              <Trophy className="w-6 h-6 text-primary" />
+            </div>
+            <div className="font-display text-3xl text-white tracking-widest">UTPL <span className="text-primary">2026</span></div>
+          </div>
           <div className="flex justify-center gap-6 mb-8 font-display tracking-widest text-lg text-white/50">
             {['HOME', 'ABOUT', 'TEAMS', 'CONTACT'].map(link => (
               <button key={link} onClick={() => scrollTo(`#${link.toLowerCase()}`)} className="hover:text-primary transition-colors">
