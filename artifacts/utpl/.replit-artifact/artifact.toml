@@ -15,11 +15,11 @@ paths = [ "/" ]
 localPort = 23226
 
 [services.development]
-run = "pnpm --filter @workspace/utpl run dev"
+run = "pnpm run dev"
 
 [services.production]
-build = [ "pnpm", "--filter", "@workspace/utpl", "run", "build" ]
-publicDir = "artifacts/utpl/dist/public"
+build = [ "pnpm", "run", "build" ]
+publicDir = "dist"
 serve = "static"
 
 [[services.production.rewrites]]
@@ -28,4 +28,3 @@ to = "/index.html"
 
 [services.env]
 PORT = "23226"
-BASE_PATH = "/"
