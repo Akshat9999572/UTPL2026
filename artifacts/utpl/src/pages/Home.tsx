@@ -181,12 +181,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-secondary/20">
             <div className="flex flex-col items-center justify-center p-4">
               <Trophy className="w-12 h-12 text-secondary mb-2" />
-              <div className="text-4xl font-display text-secondary">8+ TEAMS</div>
+              <div className="text-4xl font-display text-secondary">5 TEAMS</div>
               <div className="text-secondary/80 font-bold tracking-wider">COMPETING FOR GLORY</div>
             </div>
             <div className="flex flex-col items-center justify-center p-4">
               <Users className="w-12 h-12 text-secondary mb-2" />
-              <div className="text-4xl font-display text-secondary">200+ PLAYERS</div>
+              <div className="text-4xl font-display text-secondary">65 PLAYERS</div>
               <div className="text-secondary/80 font-bold tracking-wider">TEACHERS FROM UNNAO</div>
             </div>
             <div className="flex flex-col items-center justify-center p-4">
@@ -235,10 +235,13 @@ export default function Home() {
                 <span className="text-muted-foreground">BOUND BY CRICKET.</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-lg text-muted-foreground leading-relaxed">
-                Unnao Teachers' Premier League (UTPL) is more than a tournament — it's a celebration of teamwork, dedication, and the spirit of sportsmanship. Bringing together teachers from across Unnao, UTPL creates a platform where passion for cricket meets the purpose of education.
+                Unnao Teachers' Premier League (UTPL) is more than a tournament — it is a celebration of teamwork, dedication, and the enduring spirit of sportsmanship. Bringing together teachers from across Unnao, UTPL creates a unique platform where a passion for cricket meets the noble purpose of education.
               </motion.p>
               <motion.p variants={fadeUp} className="text-lg text-muted-foreground leading-relaxed">
-                For weeks, the chalks and dusters are traded for bats and balls, as the educators of tomorrow's leaders showcase their athletic prowess on the field.
+                This prestigious tournament is being organised under the patronage of <span className="font-semibold text-foreground">Mr. Maneendra Kumar (BEO, Miyaganj)</span> and is organized by <span className="font-semibold text-foreground">Alok Awasthi</span> along with his dedicated core committee team, who have previously orchestrated the grand and successful tournament TPL.
+              </motion.p>
+              <motion.p variants={fadeUp} className="text-lg text-muted-foreground leading-relaxed">
+                UTPL is envisioned as a <span className="font-semibold text-foreground">Night T20 tournament</span>, set to be played under dazzling floodlights at the iconic <span className="font-semibold text-foreground">Nikhat Stadium, Unnao</span>, promising an electrifying sporting experience that blends competition with camaraderie.
               </motion.p>
               <motion.div variants={fadeUp} className="pt-6">
                 <Button variant="outline" size="lg" className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-display text-xl tracking-wider px-8 py-6 rounded-none">
