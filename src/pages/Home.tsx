@@ -74,14 +74,14 @@ export default function Home() {
       {/* NAVBAR */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-secondary/95 backdrop-blur-md shadow-lg py-2' : 'bg-secondary py-4'}`}>
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollTo('#home')}>
-            <img src={logoSrc} alt="UTPL Logo" className="h-12 w-12 object-contain rounded-full" />
-            <span className="font-display text-base sm:text-lg md:text-2xl text-white tracking-wide">
-              Unnao Teachers' Premier League <span className="text-primary">2026</span>
+          <div className="flex min-w-0 items-center gap-3 cursor-pointer" onClick={() => scrollTo('#home')}>
+            <img src={logoSrc} alt="UTPL Logo" className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 object-contain rounded-full" />
+            <span className="font-display text-sm sm:text-base lg:text-lg text-white tracking-wide leading-tight max-w-[14rem] sm:max-w-sm lg:max-w-xl">
+              Unnao Teachers' Cricket Club presents <span className="text-primary">Rotary Club of Unnao Royal Championship 2026</span>
             </span>
           </div>
           
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden xl:flex items-center gap-6">
             {navLinks.map((link) => (
               <button 
                 key={link.name}
@@ -97,7 +97,7 @@ export default function Home() {
           </div>
 
           <button 
-            className="md:hidden text-white"
+            className="xl:hidden text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -112,7 +112,7 @@ export default function Home() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-secondary pt-24 px-6 flex flex-col gap-6 md:hidden"
+            className="fixed inset-0 z-40 bg-secondary pt-24 px-6 flex flex-col gap-6 xl:hidden"
           >
             {navLinks.map((link) => (
               <button 
