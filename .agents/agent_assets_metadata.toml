@@ -1,0 +1,86 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "184AmeR5qPVhj0yyaSyR0"
+uri = "file://artifacts/utpl/public/images/stadium.png"
+type = "image"
+title = "Packed cricket stadium at night"
+
+[[generated]]
+id = "6SJN2wgGMYIsX0Lx51IWb"
+uri = "file://artifacts/utpl/public/images/gallery-1.png"
+type = "image"
+title = "Cricket action shot batting"
+
+[[generated]]
+id = "bGHaSufgnIOs_Z6iWoBmO"
+uri = "file://artifacts/utpl/public/images/gallery-2.png"
+type = "image"
+title = "Cricket action shot bowling"
+
+[[generated]]
+id = "L__qJ1kDOeJ5Mxi4j7Hkd"
+uri = "file://artifacts/utpl/public/images/gallery-3.png"
+type = "image"
+title = "Cricket team celebration"
+
+[[generated]]
+id = "8a4Pj5j73z7FH4Fr4OM8b"
+uri = "file://artifacts/utpl/public/images/gallery-4.png"
+type = "image"
+title = "Cricket trophy ceremony"
+
+[[generated]]
+id = "r7dEDliWTH5KKG6CytAtA"
+uri = "file://artifacts/utpl/public/images/gallery-5.png"
+type = "image"
+title = "Cricket equipment detail"
+
+[[generated]]
+id = "eTdUuLS-o08KK6ith_OJR"
+uri = "file://artifacts/utpl/public/images/team-1.png"
+type = "image"
+title = "Scholars XI Logo"
+
+[[generated]]
+id = "yefd5nwLvsLx-LaJP7bOW"
+uri = "file://artifacts/utpl/public/images/team-2.png"
+type = "image"
+title = "Educators FC Logo"
+
+[[generated]]
+id = "5J_O2PCFbzcqC6Lukb5qR"
+uri = "file://artifacts/utpl/public/images/team-3.png"
+type = "image"
+title = "Mentors CC Logo"
+
+[[generated]]
+id = "nKax8QT7_awpV6ghFqZjo"
+uri = "file://artifacts/utpl/public/images/team-4.png"
+type = "image"
+title = "Achievers XI Logo"
+
+[[generated]]
+id = "Ywj5Jx78UehNAvnSeC8ZR"
+uri = "file://artifacts/utpl/public/images/team-5.png"
+type = "image"
+title = "Inspirers CC Logo"
+
+[[generated]]
+id = "QrSBpNV6z1i6tfsRlDOjK"
+uri = "file://artifacts/utpl/public/images/team-6.png"
+type = "image"
+title = "Guiders XI Logo"
+
+[[generated]]
+id = "IgKLB8S4SnQY1pduaODj5"
+uri = "file://artifacts/utpl/public/images/team-7.png"
+type = "image"
+title = "Visionaries CC Logo"
+
+[[generated]]
+id = "L8DdZrGW9vHEDPiFkJ1HG"
+uri = "file://artifacts/utpl/public/images/team-8.png"
+type = "image"
+title = "Leaders XI Logo"
