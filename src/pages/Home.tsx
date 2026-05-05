@@ -9,14 +9,11 @@ const baseUrl = import.meta.env.BASE_URL;
 const logoSrc = `${baseUrl}utpl-logo.png`;
 const stadiumSrc = `${baseUrl}images/stadium.png`;
 const teamLogos = [
-  `${baseUrl}images/team-1.png`,
-  `${baseUrl}images/team-2.png`,
-  `${baseUrl}images/team-3.png`,
-  `${baseUrl}images/team-4.png`,
-  `${baseUrl}images/team-5.png`,
-  `${baseUrl}images/team-6.png`,
-  `${baseUrl}images/team-7.png`,
-  `${baseUrl}images/team-8.png`,
+  `${baseUrl}images/franchise-madhyamik-lions.jpg`,
+  `${baseUrl}images/franchise-sk-warriors.jpg`,
+  `${baseUrl}images/franchise-rising-star.jpg`,
+  `${baseUrl}images/franchise-wisdom-warriors.jpg`,
+  `${baseUrl}images/franchise-unnao-super-kings.jpg`,
 ];
 const galleryImages = [
   `${baseUrl}images/gallery-1.png`,
@@ -370,23 +367,20 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
               <span className="text-primary font-bold tracking-widest uppercase mb-2 block">The Contenders</span>
-              <h2 className="text-5xl md:text-6xl font-display text-secondary">UTPL FRANCHISES</h2>
+              <h2 className="text-5xl md:text-6xl font-display text-secondary">FRANCHISES</h2>
             </div>
             <Button className="bg-secondary text-white hover:bg-secondary/90 font-display text-xl tracking-wider rounded-none hidden md:flex">
               VIEW FULL TEAMS <ChevronRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-8">
             {[
-              { name: 'Scholars XI' },
-              { name: 'Educators FC' },
-              { name: 'Mentors CC' },
-              { name: 'Achievers XI' },
-              { name: 'Inspirers CC' },
-              { name: 'Guiders XI' },
-              { name: 'Visionaries CC' },
-              { name: 'Leaders XI' },
+              { name: 'Madhyamik Lions' },
+              { name: 'SK Warriors' },
+              { name: 'The Rising Star' },
+              { name: 'Wisdom Warriors' },
+              { name: 'Unnao Super Kings' },
             ].map((team, idx) => (
               <motion.div 
                 key={idx}
@@ -396,9 +390,9 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="group"
               >
-                <div className="bg-white rounded-2xl p-6 shadow-md border-2 border-transparent group-hover:border-primary group-hover:shadow-xl transition-all duration-300 flex flex-col items-center gap-4 cursor-pointer transform group-hover:-translate-y-2">
-                  <div className="w-full aspect-square rounded-full bg-muted flex items-center justify-center p-4">
-                    <img src={teamLogos[idx]} alt={team.name} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-300" />
+                <div className="bg-white rounded-2xl p-4 shadow-md border-2 border-transparent group-hover:border-primary group-hover:shadow-xl transition-all duration-300 flex flex-col items-center gap-4 cursor-pointer transform group-hover:-translate-y-2">
+                  <div className="w-full aspect-square rounded-xl bg-muted flex items-center justify-center overflow-hidden">
+                    <img src={teamLogos[idx]} alt={`${team.name} logo`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                   </div>
                   <h3 className="font-display text-xl md:text-2xl text-secondary text-center tracking-wide group-hover:text-primary transition-colors">{team.name}</h3>
                 </div>
