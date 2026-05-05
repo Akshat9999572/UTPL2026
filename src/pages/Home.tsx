@@ -72,9 +72,9 @@ export default function Home() {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-secondary/95 backdrop-blur-md shadow-lg py-2' : 'bg-secondary py-4'}`}>
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
           <div className="flex min-w-0 items-center gap-3 cursor-pointer" onClick={() => scrollTo('#home')}>
-            <img src={logoSrc} alt="UTPL Logo" className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 object-contain rounded-full" />
+            <img src={logoSrc} alt="Rotary Club of Unnao Royal Teachers' Championship logo" className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 object-contain rounded-full" />
             <span className="font-display text-sm sm:text-base lg:text-lg text-white tracking-wide leading-tight max-w-[14rem] sm:max-w-sm lg:max-w-xl">
-              Unnao Teachers' Cricket Club presents <span className="text-primary">Rotary Club of Unnao Royal Championship 2026</span>
+              Unnao Teachers' Cricket Club presents <span className="text-primary">Rotary Club of Unnao Royal Teachers' Championship</span>
             </span>
           </div>
           
@@ -143,12 +143,11 @@ export default function Home() {
             <motion.h1 variants={fadeUp} className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-bold text-white leading-[0.85]">
               <span className="block text-primary">ROTARY CLUB</span>
               <span className="block text-white">OF UNNAO</span>
-              <span className="block text-cyan-300">ROYAL</span>
+              <span className="block text-cyan-300">ROYAL TEACHERS'</span>
               <span className="block text-rose-400">CHAMPIONSHIP</span>
-              <span className="block text-emerald-300">2026</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="text-white/75 text-lg md:text-xl max-w-2xl">
-              The premier cricket league bringing together the educators of Unnao for a spectacular celebration of sportsmanship and community.
+              Rotary Club of Unnao Royal Teachers' Championship brings together the educators of Unnao for a spectacular celebration of sportsmanship and community.
             </motion.p>
             <motion.div variants={fadeUp} className="pt-4 flex flex-wrap justify-center gap-4">
               <Button size="lg" className="bg-primary text-secondary hover:bg-primary/90 font-display text-2xl tracking-wider px-8 py-6 rounded-none" onClick={() => scrollTo('#about')}>
@@ -168,7 +167,7 @@ export default function Home() {
             <div className="absolute w-[100%] h-[100%] rounded-full border-4 border-primary/10 pointer-events-none"></div>
             <img
               src={logoSrc}
-              alt="UTPL Logo"
+              alt="Rotary Club of Unnao Royal Teachers' Championship logo"
               className="relative z-10 w-[320px] h-[320px] lg:w-[440px] lg:h-[440px] object-contain drop-shadow-[0_0_60px_rgba(245,166,35,0.4)]"
             />
           </motion.div>
@@ -244,7 +243,7 @@ export default function Home() {
                 <span className="text-muted-foreground">BOUND BY CRICKET.</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-lg text-muted-foreground leading-relaxed">
-                Unnao Teachers' Premier League (UTPL) is more than a tournament — it is a celebration of teamwork, dedication, and the enduring spirit of sportsmanship. Bringing together teachers from across Unnao, UTPL creates a unique platform where a passion for cricket meets the noble purpose of education.
+                Rotary Club of Unnao Royal Teachers' Championship is more than a tournament — it is a celebration of teamwork, dedication, and the enduring spirit of sportsmanship. Bringing together teachers from across Unnao, the championship creates a unique platform where a passion for cricket meets the noble purpose of education.
               </motion.p>
               <motion.p variants={fadeUp} className="text-lg text-muted-foreground leading-relaxed">
                 This prestigious tournament is being organised under the patronage of <span className="font-semibold text-foreground">Mr. Maneendra Kumar (BEO, Miyaganj)</span> and is organized by <span className="font-semibold text-foreground">Alok Awasthi</span> along with his dedicated core committee team, who have previously orchestrated the grand and successful tournament TPL.
@@ -516,7 +515,7 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="bg-secondary text-white py-12 border-t-8 border-primary">
         <div className="container mx-auto px-4 text-center">
-          <img src={logoSrc} alt="UTPL Logo" className="h-24 w-24 object-contain mx-auto mb-6 opacity-70 hover:opacity-100 transition-opacity duration-500" />
+          <img src={logoSrc} alt="Rotary Club of Unnao Royal Teachers' Championship logo" className="h-24 w-24 object-contain mx-auto mb-6 opacity-70 hover:opacity-100 transition-opacity duration-500" />
           <div className="flex justify-center gap-6 mb-8 font-display tracking-widest text-lg text-white/50">
             {['HOME', 'ABOUT', 'TEAMS', 'CONTACT'].map(link => (
               <button key={link} onClick={() => scrollTo(`#${link.toLowerCase()}`)} className="hover:text-primary transition-colors">
@@ -525,7 +524,7 @@ export default function Home() {
             ))}
           </div>
           <p className="text-white/40 text-sm font-semibold tracking-widest uppercase">
-            © 2026 Unnao Teachers' Premier League. All Rights Reserved.
+            © 2026 Rotary Club of Unnao Royal Teachers' Championship. All Rights Reserved.
           </p>
         </div>
       </footer>
