@@ -132,25 +132,28 @@ export default function Home() {
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent pointer-events-none transform -skew-x-12 translate-x-20"></div>
         
-        <div className="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10 py-12">
+        <div className="container mx-auto px-4 md:px-6 flex flex-col items-center justify-center gap-10 relative z-10 py-14 text-center">
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="flex flex-col gap-6"
+            className="flex max-w-6xl flex-col items-center gap-6"
           >
-            <motion.div variants={fadeUp} className="inline-block border-l-4 border-primary pl-4">
+            <motion.div variants={fadeUp} className="inline-block border-x-4 border-primary px-4">
               <p className="text-primary font-bold tracking-widest uppercase text-sm md:text-base">Uniting Educators. Celebrating Cricket.</p>
             </motion.div>
-            <motion.h1 variants={fadeUp} className="text-6xl md:text-7xl lg:text-8xl font-display text-white leading-[0.9]">
-              TEACHERS BY <br/> PROFESSION, <br/>
-              <span className="text-primary">CHAMPIONS BY PASSION.</span>
+            <motion.h1 variants={fadeUp} className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-bold text-white leading-[0.85]">
+              <span className="block text-primary">ROTARY CLUB</span>
+              <span className="block text-white">OF UNNAO</span>
+              <span className="block text-cyan-300">ROYAL</span>
+              <span className="block text-rose-400">CHAMPIONSHIP</span>
+              <span className="block text-emerald-300">2026</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-white/70 text-lg md:text-xl max-w-lg">
+            <motion.p variants={fadeUp} className="text-white/75 text-lg md:text-xl max-w-2xl">
               The premier cricket league bringing together the educators of Unnao for a spectacular celebration of sportsmanship and community.
             </motion.p>
-            <motion.div variants={fadeUp} className="pt-4 flex flex-wrap gap-4">
+            <motion.div variants={fadeUp} className="pt-4 flex flex-wrap justify-center gap-4">
               <Button size="lg" className="bg-primary text-secondary hover:bg-primary/90 font-display text-2xl tracking-wider px-8 py-6 rounded-none" onClick={() => scrollTo('#about')}>
                 EXPLORE LEAGUE <ChevronRight className="ml-2 w-6 h-6" />
               </Button>
@@ -162,7 +165,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, type: "spring" }}
             viewport={{ once: true }}
-            className="relative flex justify-center items-center lg:justify-end"
+            className="relative flex justify-center items-center"
           >
             <div className="absolute w-[120%] h-[120%] rounded-full border-2 border-primary/20 pointer-events-none border-dashed" style={{ animation: 'spin 30s linear infinite' }}></div>
             <div className="absolute w-[100%] h-[100%] rounded-full border-4 border-primary/10 pointer-events-none"></div>
