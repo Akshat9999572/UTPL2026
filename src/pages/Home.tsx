@@ -22,6 +22,10 @@ const galleryImages = [
   `${baseUrl}images/gallery-4.png`,
   `${baseUrl}images/gallery-5.png`,
 ];
+const championshipPosters = [
+  `${baseUrl}images/championship-poster-night-cricket.png`,
+  `${baseUrl}images/championship-poster-night-lights.png`,
+];
 
 const navLinks = [
   { name: 'HOME', href: '#home' },
@@ -88,9 +92,6 @@ export default function Home() {
                 {link.name}
               </button>
             ))}
-            <Button className="bg-primary text-secondary hover:bg-primary/90 font-display text-lg tracking-wider rounded-none">
-              GET TICKETS
-            </Button>
           </div>
 
           <button 
@@ -197,13 +198,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NIGHT CRICKET BANNER */}
-      <section className="w-full">
-        <img
-          src={`${baseUrl}night-cricket.png`}
-          alt="Night Cricket at Nikhat Stadium, Unnao"
-          className="w-full object-cover"
-        />
+      {/* CHAMPIONSHIP POSTERS */}
+      <section className="w-full bg-secondary">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {championshipPosters.map((poster, idx) => (
+            <img
+              key={poster}
+              src={poster}
+              alt={`Rotary Club of Unnao Royal Teachers' Championship poster ${idx + 1}`}
+              className="w-full object-cover"
+            />
+          ))}
+        </div>
       </section>
 
       {/* ABOUT */}
@@ -236,7 +242,7 @@ export default function Home() {
             >
               <motion.div variants={fadeUp} className="flex items-center gap-4">
                 <span className="h-1 w-12 bg-primary"></span>
-                <span className="text-primary font-bold tracking-widest uppercase">About UTPL</span>
+                <span className="text-primary font-bold tracking-widest uppercase">About Championship</span>
               </motion.div>
               <motion.h2 variants={fadeUp} className="text-5xl md:text-6xl font-display leading-[0.9]">
                 UNITED BY TEACHING,<br/>
