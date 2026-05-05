@@ -198,6 +198,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* NIGHT CRICKET BANNER */}
+      <section className="w-full">
+        <img
+          src={`${baseUrl}night-cricket.png`}
+          alt="Night Cricket at Nikhat Stadium, Unnao"
+          className="w-full object-cover"
+        />
+      </section>
+
       {/* ABOUT */}
       <section id="about" className="py-24 bg-background relative">
         <div className="container mx-auto px-4 md:px-6">
