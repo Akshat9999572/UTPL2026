@@ -31,6 +31,7 @@ const championshipPosters = [
   `${baseUrl}images/championship-poster-night-cricket.png`,
   `${baseUrl}images/championship-poster-night-lights.png`,
 ];
+const championshipFeaturePoster = `${baseUrl}images/championship-poster-main-event.png`;
 const committeeMembers = [
   {
     name: 'Maneendra Kumar (BEO)',
@@ -253,6 +254,11 @@ export default function Home() {
               className="w-full object-cover"
             />
           ))}
+          <img
+            src={championshipFeaturePoster}
+            alt="Rotary Club of Unnao Royal Teachers' Championship feature poster"
+            className="w-full object-cover lg:col-span-2"
+          />
         </div>
       </section>
 
