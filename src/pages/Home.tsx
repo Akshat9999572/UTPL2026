@@ -38,6 +38,33 @@ const committeeMembers = [
     image: `${baseUrl}images/alok-awasthi.jpg`,
   },
 ];
+const franchiseOwners = [
+  {
+    name: 'Sudhanshu Singh',
+    team: 'ML',
+    image: `${baseUrl}images/owner-sudhanshu-singh.jpg`,
+  },
+  {
+    name: 'Santosh Kumar',
+    team: 'SKW',
+    image: `${baseUrl}images/owner-santosh-kumar.jpg`,
+  },
+  {
+    name: 'Maneendra Kumar',
+    team: 'WW',
+    image: `${baseUrl}images/owner-maneendra-kumar.jpg`,
+  },
+  {
+    name: 'Birendra Kumar',
+    team: 'USK',
+    image: `${baseUrl}images/owner-birendra-kumar.jpg`,
+  },
+  {
+    name: 'Amit Verma',
+    team: 'TRS',
+    image: `${baseUrl}images/owner-amit-verma.jpg`,
+  },
+];
 
 const navLinks = [
   { name: 'HOME', href: '#home' },
@@ -328,15 +355,9 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {[
-              'Mr. Anil Yadav',
-              'Mr. Shubham Gupta',
-              'Mr. Mohit Sharma',
-              'Mr. Praveen Tiwari',
-              'Mr. Deepak Singh',
-            ].map((name, idx) => (
+            {franchiseOwners.map((owner, idx) => (
               <motion.div 
-                key={idx}
+                key={owner.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: idx * 0.1, duration: 0.4 }}
@@ -345,25 +366,23 @@ export default function Home() {
                 <Card className="border-2 hover:border-primary transition-colors cursor-pointer group bg-card">
                   <CardContent className="p-0">
                     <div className="bg-muted aspect-[4/5] flex items-center justify-center relative overflow-hidden">
-                      <Users className="w-16 h-16 text-secondary/20 group-hover:scale-110 transition-transform duration-500" />
+                      <img
+                        src={owner.image}
+                        alt={`${owner.name}, ${owner.team} franchise owner`}
+                        className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      />
                       <div className="absolute inset-0 bg-secondary/80 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-center justify-center">
-                        <span className="text-white font-display text-xl tracking-wider opacity-0 group-hover:opacity-100 transition-opacity delay-100">VIEW PROFILE</span>
+                        <span className="text-white font-display text-xl tracking-wider opacity-0 group-hover:opacity-100 transition-opacity delay-100">{owner.team}</span>
                       </div>
                     </div>
                     <div className="p-4 text-center border-t">
-                      <h3 className="font-bold text-lg">{name}</h3>
-                      <p className="text-sm text-muted-foreground uppercase font-bold tracking-wider mt-1">Owner</p>
+                      <h3 className="font-bold text-lg">{owner.name}</h3>
+                      <p className="text-sm text-muted-foreground uppercase font-bold tracking-wider mt-1">{owner.team}</p>
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button variant="link" className="text-secondary hover:text-primary font-display text-xl tracking-wider">
-              VIEW ALL OWNERS <ChevronRight className="ml-1 w-5 h-5" />
-            </Button>
           </div>
         </div>
       </section>
