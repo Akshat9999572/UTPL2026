@@ -11,6 +11,11 @@ const sponsors = [
     image: `${baseUrl}images/sponsor-ashish-shukla.jpg`,
   },
   {
+    name: "DD Shukla",
+    role: "Secretary",
+    image: `${baseUrl}images/sponsor-dd-shukla.jpg`,
+  },
+  {
     name: "Ambarish Tripathi",
     role: "Treasurer",
     image: `${baseUrl}images/sponsor-ambarish-tripathi.jpg`,
@@ -19,11 +24,6 @@ const sponsors = [
     name: "Dhirendra Pratap Singh",
     role: "Convener",
     image: `${baseUrl}images/sponsor-dhirendra-pratap-singh.jpg`,
-  },
-  {
-    name: "DD Shukla",
-    role: "Secretary",
-    image: `${baseUrl}images/sponsor-dd-shukla.jpg`,
   },
 ];
 
