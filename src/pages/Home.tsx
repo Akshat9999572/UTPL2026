@@ -27,6 +27,8 @@ const galleryImages = [
   `${baseUrl}images/gallery-event-8.jpg`,
   `${baseUrl}images/gallery-event-9.jpg`,
   `${baseUrl}images/gallery-event-10.jpg`,
+  `${baseUrl}images/gallery-event-11.jpg`,
+  `${baseUrl}images/gallery-event-12.jpg`,
 ];
 const championshipPosters = [
   `${baseUrl}images/championship-poster-night-cricket.png`,
@@ -70,6 +72,11 @@ const franchiseOwners = [
     name: 'Amit Verma',
     team: 'TRS',
     image: `${baseUrl}images/owner-amit-verma.jpg`,
+  },
+  {
+    name: 'Bittu Mishra',
+    team: 'TRS',
+    image: `${baseUrl}images/owner-bittu-mishra.jpg`,
   },
 ];
 
