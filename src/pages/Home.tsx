@@ -491,10 +491,10 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Phone, title: 'PHONE', desc: '+91 12345 67890' },
-              { icon: Mail, title: 'EMAIL', desc: 'info@utpl.com' },
+              { icon: Phone, title: 'PHONE', desc: '8543052329' },
+              { icon: Mail, title: 'EMAIL', desc: 'akshatshuklawrites@gmail.com' },
               { icon: MapPin, title: 'LOCATION', desc: 'Unnao, Uttar Pradesh' },
-              { icon: MessageSquare, title: 'MESSAGE US', desc: "We're here to help" },
+              { icon: MessageSquare, title: 'MESSAGE US', desc: 'akshatshuklawrites@gmail.com' },
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
