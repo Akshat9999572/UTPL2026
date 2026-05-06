@@ -301,11 +301,6 @@ export default function Home() {
               <motion.p variants={fadeUp} className="text-lg text-muted-foreground leading-relaxed">
                 UTPL is envisioned as a <span className="font-semibold text-foreground">Night T20 tournament</span>, set to be played under dazzling floodlights at the iconic <span className="font-semibold text-foreground">Nikhat Stadium, Unnao</span>, promising an electrifying sporting experience that blends competition with camaraderie.
               </motion.p>
-              <motion.div variants={fadeUp} className="pt-6">
-                <Button variant="outline" size="lg" className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-display text-xl tracking-wider px-8 py-6 rounded-none">
-                  READ MORE <ChevronRight className="ml-2 w-5 h-5" />
-                </Button>
-              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -400,9 +395,6 @@ export default function Home() {
               <span className="text-primary font-bold tracking-widest uppercase mb-2 block">The Contenders</span>
               <h2 className="text-5xl md:text-6xl font-display text-secondary">FRANCHISES</h2>
             </div>
-            <Button className="bg-secondary text-white hover:bg-secondary/90 font-display text-xl tracking-wider rounded-none hidden md:flex">
-              VIEW FULL TEAMS <ChevronRight className="ml-2 w-5 h-5" />
-            </Button>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-8">
@@ -430,10 +422,6 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-          
-          <Button className="w-full mt-8 bg-secondary text-white hover:bg-secondary/90 font-display text-xl tracking-wider rounded-none md:hidden">
-            VIEW FULL TEAMS <ChevronRight className="ml-2 w-5 h-5" />
-          </Button>
         </div>
       </section>
 
