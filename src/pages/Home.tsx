@@ -16,11 +16,16 @@ const teamLogos = [
   `${baseUrl}images/franchise-unnao-super-kings.jpg`,
 ];
 const galleryImages = [
-  `${baseUrl}images/gallery-1.png`,
-  `${baseUrl}images/gallery-2.png`,
-  `${baseUrl}images/gallery-3.png`,
-  `${baseUrl}images/gallery-4.png`,
-  `${baseUrl}images/gallery-5.png`,
+  `${baseUrl}images/gallery-event-1.jpg`,
+  `${baseUrl}images/gallery-event-2.jpg`,
+  `${baseUrl}images/gallery-event-3.jpg`,
+  `${baseUrl}images/gallery-event-4.jpg`,
+  `${baseUrl}images/gallery-event-5.jpg`,
+  `${baseUrl}images/gallery-event-6.jpg`,
+  `${baseUrl}images/gallery-event-7.jpg`,
+  `${baseUrl}images/gallery-event-8.jpg`,
+  `${baseUrl}images/gallery-event-9.jpg`,
+  `${baseUrl}images/gallery-event-10.jpg`,
 ];
 const championshipPosters = [
   `${baseUrl}images/championship-poster-night-cricket.png`,
@@ -442,62 +447,31 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px]">
-            <motion.div 
-              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-              className="md:col-span-2 md:row-span-2 relative group overflow-hidden bg-muted"
-            >
-              <img src={galleryImages[0]} alt="Gallery 1" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-secondary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-display text-2xl tracking-widest border-2 border-white px-6 py-2">VIEW IMAGE</span>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              className="lg:col-span-2 relative group overflow-hidden bg-muted"
-            >
-              <img src={galleryImages[1]} alt="Gallery 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-secondary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-display text-2xl tracking-widest border-2 border-white px-6 py-2">VIEW IMAGE</span>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-              className="relative group overflow-hidden bg-muted"
-            >
-              <img src={galleryImages[2]} alt="Gallery 3" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-secondary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-display text-2xl tracking-widest border-2 border-white px-6 py-2">VIEW IMAGE</span>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-              className="relative group overflow-hidden bg-muted"
-            >
-              <img src={galleryImages[3]} alt="Gallery 4" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-secondary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-display text-2xl tracking-widest border-2 border-white px-6 py-2">VIEW IMAGE</span>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
-              className="md:col-span-2 relative group overflow-hidden bg-muted"
-            >
-              <img src={galleryImages[4]} alt="Gallery 5" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-secondary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-display text-2xl tracking-widest border-2 border-white px-6 py-2">VIEW IMAGE</span>
-              </div>
-            </motion.div>
+            {galleryImages.map((image, idx) => {
+              const featuredClass = idx === 0
+                ? 'md:col-span-2 md:row-span-2'
+                : idx === 1 || idx === 4 || idx === 9
+                  ? 'lg:col-span-2'
+                  : '';
+
+              return (
+                <motion.div
+                  key={image}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: Math.min(idx * 0.05, 0.4) }}
+                  className={`${featuredClass} relative group overflow-hidden bg-muted`}
+                >
+                  <img src={image} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-secondary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-white font-display text-2xl tracking-widest border-2 border-white px-6 py-2">VIEW IMAGE</span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
           
-          <div className="text-center mt-12">
-            <Button variant="outline" className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-display text-xl tracking-wider px-8 py-6 rounded-none">
-              VIEW FULL GALLERY
-            </Button>
-          </div>
         </div>
       </section>
 
