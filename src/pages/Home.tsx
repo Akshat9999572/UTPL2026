@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Trophy, Users, Target, Phone, Mail, MapPin, MessageSquare, ChevronRight } from 'lucide-react';
+import { useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -79,12 +80,14 @@ const navLinks = [
   { name: 'OWNERS', href: '#owners' },
   { name: 'TEAMS', href: '#teams' },
   { name: 'GALLERY', href: '#gallery' },
+  { name: 'CHAMPIONSHIP SPONSORS', href: '/sponsors', externalPage: true },
   { name: 'CONTACT', href: '#contact' },
 ];
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,6 +103,15 @@ export default function Home() {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleNavClick = (href: string, externalPage?: boolean) => {
+    if (externalPage) {
+      setMobileMenuOpen(false);
+      setLocation(href);
+      return;
+    }
+    scrollTo(href);
   };
 
   const fadeUp = {
@@ -131,7 +143,7 @@ export default function Home() {
             {navLinks.map((link) => (
               <button 
                 key={link.name}
-                onClick={() => scrollTo(link.href)}
+                onClick={() => handleNavClick(link.href, link.externalPage)}
                 className="text-sm font-semibold text-white/80 hover:text-primary transition-colors tracking-wider"
               >
                 {link.name}
@@ -160,7 +172,7 @@ export default function Home() {
             {navLinks.map((link) => (
               <button 
                 key={link.name}
-                onClick={() => scrollTo(link.href)}
+                onClick={() => handleNavClick(link.href, link.externalPage)}
                 className="text-2xl font-display text-left text-white hover:text-primary transition-colors tracking-wider border-b border-white/10 pb-4"
               >
                 {link.name}
