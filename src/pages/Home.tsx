@@ -81,7 +81,7 @@ const navLinks = [
   { name: 'TEAMS', href: '#teams' },
   { name: 'GALLERY', href: '#gallery' },
   { name: 'CHAMPIONSHIP SPONSORS', href: '/sponsors', externalPage: true },
-  { name: 'CONTACT', href: '#contact' },
+  { name: 'CONTACT', href: '/contact', externalPage: true },
 ];
 
 export default function Home() {
@@ -524,9 +524,14 @@ export default function Home() {
         <div className="container mx-auto px-4 text-center">
           <img src={logoSrc} alt="Rotary Club of Unnao Royal Teachers' Championship logo" className="h-24 w-24 object-contain mx-auto mb-6 opacity-70 hover:opacity-100 transition-opacity duration-500" />
           <div className="flex justify-center gap-6 mb-8 font-display tracking-widest text-lg text-white/50">
-            {['HOME', 'ABOUT', 'TEAMS', 'CONTACT'].map(link => (
-              <button key={link} onClick={() => scrollTo(`#${link.toLowerCase()}`)} className="hover:text-primary transition-colors">
-                {link}
+            {[
+              { name: 'HOME', href: '#home' },
+              { name: 'ABOUT', href: '#about' },
+              { name: 'TEAMS', href: '#teams' },
+              { name: 'CONTACT', href: '/contact', externalPage: true },
+            ].map((link) => (
+              <button key={link.name} onClick={() => handleNavClick(link.href, link.externalPage)} className="hover:text-primary transition-colors">
+                {link.name}
               </button>
             ))}
           </div>
