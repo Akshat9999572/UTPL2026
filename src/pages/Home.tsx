@@ -26,6 +26,18 @@ const championshipPosters = [
   `${baseUrl}images/championship-poster-night-cricket.png`,
   `${baseUrl}images/championship-poster-night-lights.png`,
 ];
+const committeeMembers = [
+  {
+    name: 'Maneendra Kumar (BEO)',
+    role: 'Patron',
+    image: `${baseUrl}images/maneendra-kumar-beo.jpg`,
+  },
+  {
+    name: 'Alok Awasthi',
+    role: 'Organizer',
+    image: `${baseUrl}images/alok-awasthi.jpg`,
+  },
+];
 
 const navLinks = [
   { name: 'HOME', href: '#home' },
@@ -277,26 +289,22 @@ export default function Home() {
             <div className="w-24 h-1 bg-primary mt-6"></div>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {[
-              { name: 'Dr. Rajesh Kumar', role: 'Patron' },
-              { name: 'Mr. Amit Verma', role: 'President' },
-              { name: 'Mr. Sandeep Tiwari', role: 'Secretary' },
-              { name: 'Mr. Pankaj Singh', role: 'Treasurer' },
-              { name: 'Mr. Vivek Mishra', role: 'Coordinator' },
-            ].map((member, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {committeeMembers.map((member, idx) => (
               <motion.div 
-                key={idx}
+                key={member.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
                 className="group relative overflow-hidden bg-white/5 border border-white/10 hover:border-primary/50 transition-colors"
               >
-                <div className="aspect-square bg-gradient-to-br from-primary/20 to-secondary/50 flex items-center justify-center border-b border-white/10">
-                  <span className="text-6xl font-display text-white/20 group-hover:text-primary/40 transition-colors">
-                    {member.name.split(' ')[1]?.[0] || member.name[0]}
-                  </span>
+                <div className="aspect-[4/5] bg-gradient-to-br from-primary/20 to-secondary/50 overflow-hidden border-b border-white/10">
+                  <img
+                    src={member.image}
+                    alt={`${member.name}, ${member.role}`}
+                    className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="p-6 text-center">
                   <h3 className="text-xl font-bold font-display tracking-wide group-hover:text-primary transition-colors">{member.name}</h3>
@@ -305,12 +313,6 @@ export default function Home() {
                 <div className="absolute bottom-0 left-0 h-1 bg-primary w-0 group-hover:w-full transition-all duration-300"></div>
               </motion.div>
             ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button variant="link" className="text-white hover:text-primary font-display text-xl tracking-wider">
-              VIEW FULL COMMITTEE <ChevronRight className="ml-1 w-5 h-5" />
-            </Button>
           </div>
         </div>
       </section>
