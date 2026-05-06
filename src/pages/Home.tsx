@@ -135,7 +135,8 @@ export default function Home() {
           <div className="flex min-w-0 items-center gap-3 cursor-pointer" onClick={() => scrollTo('#home')}>
             <img src={logoSrc} alt="Rotary Club of Unnao Royal Teachers' Championship logo" className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 object-contain rounded-full" />
             <span className="font-display text-sm sm:text-base lg:text-lg text-white tracking-wide leading-tight max-w-[14rem] sm:max-w-sm lg:max-w-xl">
-              Unnao Teachers' Cricket Club presents <span className="text-primary">Rotary Club of Unnao Royal Teachers' Championship</span>
+              <span className="block">Unnao Teachers' Cricket Club presents</span>
+              <span className="block text-primary">Rotary Club of Unnao Royal Teachers' Championship</span>
             </span>
           </div>
           
