@@ -70,8 +70,8 @@ export default function LatestNewsSection() {
                     <div className="w-full h-full flex items-center justify-center text-muted-foreground/30">No Image</div>
                   )}
                   {post.categories && post.categories.length > 0 && (
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-primary text-secondary text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-md">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <span className="bg-primary text-secondary text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-md inline-block">
                         {post.categories[0]}
                       </span>
                     </div>

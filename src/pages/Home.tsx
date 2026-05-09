@@ -84,16 +84,16 @@ const franchiseOwners = [
 
 const navLinks = [
   { name: 'HOME', href: '#home' },
-  { name: 'LIVE SCORES', href: '#live-scores' },
+  { name: 'LIVE SCORES', href: 'https://cricheroes.com/tournament/2012283/urtc-(-unnao-royal-teachers-championship)-2026-season-1st/matches/live-matches', absoluteExternal: true },
+  { name: 'SUBMISSION', href: 'https://docs.google.com/forms/d/1535L9dcF9H4FlZ7jY1eIXW-C6IBFxzf0TwWDXKRPT2c', absoluteExternal: true },
   { name: 'NEWS', href: '/news', externalPage: true },
   { name: 'ABOUT', href: '#about' },
-  { name: 'COMMITTEE', href: '#committee' },
-  { name: 'OWNERS', href: '#owners' },
-  { name: 'TEAMS', href: '#teams' },
   { name: 'GALLERY', href: '#gallery' },
   { name: 'CHAMPIONSHIP SPONSORS', href: '/sponsors', externalPage: true },
   { name: 'CONTACT', href: '/contact', externalPage: true },
 ];
+
+import SEO from '@/components/SEO';
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -116,7 +116,12 @@ export default function Home() {
     }
   };
 
-  const handleNavClick = (href: string, externalPage?: boolean) => {
+  const handleNavClick = (href: string, externalPage?: boolean, absoluteExternal?: boolean) => {
+    if (absoluteExternal) {
+      setMobileMenuOpen(false);
+      window.open(href, '_blank', 'noopener,noreferrer');
+      return;
+    }
     if (externalPage) {
       setMobileMenuOpen(false);
       setLocation(href);
@@ -125,12 +130,12 @@ export default function Home() {
     scrollTo(href);
   };
 
-  const fadeUp = {
+  const fadeUp: any = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
   };
 
-  const staggerContainer = {
+  const staggerContainer: any = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -140,6 +145,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <SEO 
+        title="Rotary Club of Unnao Royal Teachers' Championship"
+        description="Official website of the Rotary Club of Unnao Royal Teachers' Championship. Celebrating cricket and uniting educators in Unnao."
+        url="/"
+      />
       {/* NAVBAR */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-secondary/95 backdrop-blur-md shadow-lg py-2' : 'bg-secondary py-4'}`}>
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -155,7 +165,7 @@ export default function Home() {
             {navLinks.map((link) => (
               <button 
                 key={link.name}
-                onClick={() => handleNavClick(link.href, link.externalPage)}
+                onClick={() => handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal)}
                 className="text-sm font-semibold text-white/80 hover:text-primary transition-colors tracking-wider"
               >
                 {link.name}
@@ -184,7 +194,7 @@ export default function Home() {
             {navLinks.map((link) => (
               <button 
                 key={link.name}
-                onClick={() => handleNavClick(link.href, link.externalPage)}
+                onClick={() => handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal)}
                 className="text-2xl font-display text-left text-white hover:text-primary transition-colors tracking-wider border-b border-white/10 pb-4"
               >
                 {link.name}
@@ -544,13 +554,14 @@ export default function Home() {
           <div className="flex justify-center gap-6 mb-8 font-display tracking-widest text-lg text-white/50">
             {[
               { name: 'HOME', href: '#home' },
-              { name: 'LIVE SCORES', href: '#live-scores' },
+              { name: 'LIVE SCORES', href: 'https://cricheroes.com/tournament/2012283/urtc-(-unnao-royal-teachers-championship)-2026-season-1st/matches/live-matches', absoluteExternal: true },
+              { name: 'SUBMISSION', href: 'https://docs.google.com/forms/d/1535L9dcF9H4FlZ7jY1eIXW-C6IBFxzf0TwWDXKRPT2c', absoluteExternal: true },
               { name: 'NEWS', href: '/news', externalPage: true },
               { name: 'ABOUT', href: '#about' },
-              { name: 'TEAMS', href: '#teams' },
+              { name: 'GALLERY', href: '#gallery' },
               { name: 'CONTACT', href: '/contact', externalPage: true },
             ].map((link) => (
-              <button key={link.name} onClick={() => handleNavClick(link.href, link.externalPage)} className="hover:text-primary transition-colors">
+              <button key={link.name} onClick={() => handleNavClick(link.href, link.externalPage, link.absoluteExternal)} className="hover:text-primary transition-colors">
                 {link.name}
               </button>
             ))}

@@ -28,7 +28,7 @@ export const postType = defineType({
     }),
     defineField({
       name: 'mainImage',
-      title: 'Featured Image',
+      title: 'Featured Image 1',
       type: 'image',
       options: {
         hotspot: true,
@@ -41,6 +41,21 @@ export const postType = defineType({
         }
       ],
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'secondImage',
+      title: 'Featured Image 2',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+        }
+      ],
     }),
     defineField({
       name: 'categories',

@@ -4,6 +4,8 @@ import { Calendar, User, ArrowRight, ChevronRight, Search } from 'lucide-react';
 import { Link } from 'wouter';
 import { client, urlFor } from '../sanity/client';
 
+import SEO from '../components/SEO';
+
 export default function News() {
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -28,6 +30,11 @@ export default function News() {
 
   return (
     <div className="min-h-screen bg-secondary text-white pt-24 pb-16">
+      <SEO 
+        title="Latest News"
+        description="Official press releases, match reports, and announcements from the UTPL organization."
+        url="/news"
+      />
       {/* Hero Section */}
       <div className="bg-primary/5 py-16 border-b border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
@@ -74,8 +81,8 @@ export default function News() {
                     <div className="w-full h-full flex items-center justify-center text-white/20">No Image</div>
                   )}
                   {post.categories && post.categories.length > 0 && (
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-primary text-secondary text-xs font-bold px-3 py-1 uppercase tracking-wider">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <span className="bg-primary text-secondary text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-md inline-block">
                         {post.categories[0]}
                       </span>
                     </div>

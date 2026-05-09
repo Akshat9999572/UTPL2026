@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Trophy, Activity, ArrowRight } from 'lucide-react';
 
-const tournamentUrl = 'https://cricheroes.in/tournament/lOnAYW/Rotary-Club-of-Unnao-Royal-Teachers-Championship';
+const tournamentUrl = 'https://cricheroes.com/tournament/2012283/urtc-(-unnao-royal-teachers-championship)-2026-season-1st/matches/live-matches';
 
 export default function LiveScoresSection() {
   return (
