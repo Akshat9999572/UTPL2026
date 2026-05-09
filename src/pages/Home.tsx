@@ -4,6 +4,7 @@ import { Menu, X, Trophy, Users, Target, Phone, Mail, MapPin, MessageSquare, Che
 import { useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import LiveScoresSection from '@/components/LiveScoresSection';
 
 // Images (Relative to BASE_URL)
 const baseUrl = import.meta.env.BASE_URL;
@@ -82,6 +83,7 @@ const franchiseOwners = [
 
 const navLinks = [
   { name: 'HOME', href: '#home' },
+  { name: 'LIVE SCORES', href: '#live-scores' },
   { name: 'ABOUT', href: '#about' },
   { name: 'COMMITTEE', href: '#committee' },
   { name: 'OWNERS', href: '#owners' },
@@ -332,6 +334,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* LIVE SCORES */}
+      <LiveScoresSection />
+
       {/* COMMITTEE */}
       <section id="committee" className="py-24 bg-secondary text-white relative">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)', backgroundSize: '60px 60px', backgroundPosition: '0 0, 30px 30px' }}></div>
@@ -534,6 +539,7 @@ export default function Home() {
           <div className="flex justify-center gap-6 mb-8 font-display tracking-widest text-lg text-white/50">
             {[
               { name: 'HOME', href: '#home' },
+              { name: 'LIVE SCORES', href: '#live-scores' },
               { name: 'ABOUT', href: '#about' },
               { name: 'TEAMS', href: '#teams' },
               { name: 'CONTACT', href: '/contact', externalPage: true },
