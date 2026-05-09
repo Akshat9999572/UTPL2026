@@ -1,31 +1,39 @@
 export default function middleware(request: Request) {
   const url = new URL(request.url);
   const path = url.pathname;
+  const userAgent = request.headers.get('user-agent') || '';
 
-  // We only want to handle the main pages that need SEO
-  // Avoid handling static assets (images, js, css)
-  if (
-    path === '/' || 
-    path === '/news' || 
-    path.startsWith('/news/') || 
-    path === '/contact' || 
-    path === '/sponsors'
-  ) {
-    // Rewrite to our SEO handler API
-    url.pathname = '/api/seo-handler';
-    url.searchParams.set('originalPath', path);
-    if (path.startsWith('/news/')) {
+  // List of known social crawlers that need server-side SEO tags
+  const isBot = /WhatsApp|facebookexternalhit|Twitterbot|LinkedInBot|TelegramBot|Slackbot|Discordbot/i.test(userAgent);
+
+  if (isBot) {
+    // Check if it's a page that needs dynamic SEO
+    if (
+      path === '/' || 
+      path === '/news' || 
+      path.startsWith('/news/') || 
+      path === '/contact' || 
+      path === '/sponsors'
+    ) {
+      // Rewrite to our SEO handler API
+      const seoUrl = url.clone();
+      seoUrl.pathname = '/api/seo-handler';
+      seoUrl.searchParams.set('originalPath', path);
+      
+      if (path.startsWith('/news/')) {
         const slug = path.replace('/news/', '');
-        url.searchParams.set('slug', slug);
+        seoUrl.searchParams.set('slug', slug);
+      }
+      
+      return new Response(null, {
+        headers: {
+          'x-middleware-rewrite': seoUrl.toString(),
+        },
+      });
     }
-    return new Response(null, {
-      headers: {
-        'x-middleware-rewrite': url.toString(),
-      },
-    });
   }
 
-  // Pass through for everything else
+  // Pass through for everyone else (humans and non-social bots)
   return new Response(null, {
     headers: {
       'x-middleware-next': '1',
@@ -33,9 +41,9 @@ export default function middleware(request: Request) {
   });
 }
 
-// Ensure middleware doesn't run on static assets
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|assets|images).*)',
+    // Only run middleware on page requests, not assets
+    '/((?!api|_next/static|_next/image|favicon.ico|assets|images|.*\\..*).*)',
   ],
 };
