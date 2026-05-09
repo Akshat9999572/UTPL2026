@@ -5,6 +5,7 @@ import { useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import LiveScoresSection from '@/components/LiveScoresSection';
+import LatestNewsSection from '@/components/LatestNewsSection';
 
 // Images (Relative to BASE_URL)
 const baseUrl = import.meta.env.BASE_URL;
@@ -84,6 +85,7 @@ const franchiseOwners = [
 const navLinks = [
   { name: 'HOME', href: '#home' },
   { name: 'LIVE SCORES', href: '#live-scores' },
+  { name: 'NEWS', href: '/news', externalPage: true },
   { name: 'ABOUT', href: '#about' },
   { name: 'COMMITTEE', href: '#committee' },
   { name: 'OWNERS', href: '#owners' },
@@ -337,6 +339,9 @@ export default function Home() {
       {/* LIVE SCORES */}
       <LiveScoresSection />
 
+      {/* LATEST NEWS */}
+      <LatestNewsSection />
+
       {/* COMMITTEE */}
       <section id="committee" className="py-24 bg-secondary text-white relative">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)', backgroundSize: '60px 60px', backgroundPosition: '0 0, 30px 30px' }}></div>
@@ -540,6 +545,7 @@ export default function Home() {
             {[
               { name: 'HOME', href: '#home' },
               { name: 'LIVE SCORES', href: '#live-scores' },
+              { name: 'NEWS', href: '/news', externalPage: true },
               { name: 'ABOUT', href: '#about' },
               { name: 'TEAMS', href: '#teams' },
               { name: 'CONTACT', href: '/contact', externalPage: true },
