@@ -1,8 +1,5 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-
-export function middleware(request: NextRequest) {
-  const url = request.nextUrl.clone();
+export default function middleware(request: Request) {
+  const url = new URL(request.url);
   const path = url.pathname;
 
   // We only want to handle the main pages that need SEO
@@ -21,23 +18,24 @@ export function middleware(request: NextRequest) {
         const slug = path.replace('/news/', '');
         url.searchParams.set('slug', slug);
     }
-    return NextResponse.rewrite(url);
+    return new Response(null, {
+      headers: {
+        'x-middleware-rewrite': url.toString(),
+      },
+    });
   }
 
-  return NextResponse.next();
+  // Pass through for everything else
+  return new Response(null, {
+    headers: {
+      'x-middleware-next': '1',
+    },
+  });
 }
 
 // Ensure middleware doesn't run on static assets
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - assets (Vite static assets)
-     */
     '/((?!api|_next/static|_next/image|favicon.ico|assets|images).*)',
   ],
 };

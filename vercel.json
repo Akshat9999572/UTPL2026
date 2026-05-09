@@ -2,12 +2,6 @@
   "outputDirectory": "dist",
   "framework": "vite",
   "rewrites": [
-    { "source": "/api/seo-handler", "destination": "/api/seo-handler" },
     { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "functions": {
-    "api/seo-handler.ts": {
-      "includeFiles": "index.html"
-    }
-  }
+  ]
 }
