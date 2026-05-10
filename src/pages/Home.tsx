@@ -87,6 +87,7 @@ const navLinks = [
   { name: 'LIVE SCORES', href: 'https://cricheroes.com/tournament/2012283/urtc-(-unnao-royal-teachers-championship)-2026-season-1st/matches/live-matches', absoluteExternal: true },
   { name: 'SUBMISSION', href: 'https://docs.google.com/forms/d/1535L9dcF9H4FlZ7jY1eIXW-C6IBFxzf0TwWDXKRPT2c', absoluteExternal: true },
   { name: 'NEWS', href: '/news', externalPage: true },
+  { name: 'DOWNLOAD', href: '/download', externalPage: true },
   { name: 'ABOUT', href: '#about' },
   { name: 'GALLERY', href: '#gallery' },
   { name: 'CHAMPIONSHIP SPONSORS', href: '/sponsors', externalPage: true },
@@ -94,7 +95,6 @@ const navLinks = [
 ];
 
 import SEO from '@/components/SEO';
-
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -557,6 +557,7 @@ export default function Home() {
               { name: 'LIVE SCORES', href: 'https://cricheroes.com/tournament/2012283/urtc-(-unnao-royal-teachers-championship)-2026-season-1st/matches/live-matches', absoluteExternal: true },
               { name: 'SUBMISSION', href: 'https://docs.google.com/forms/d/1535L9dcF9H4FlZ7jY1eIXW-C6IBFxzf0TwWDXKRPT2c', absoluteExternal: true },
               { name: 'NEWS', href: '/news', externalPage: true },
+              { name: 'DOWNLOAD', href: '/download', externalPage: true },
               { name: 'ABOUT', href: '#about' },
               { name: 'GALLERY', href: '#gallery' },
               { name: 'CONTACT', href: '/contact', externalPage: true },
