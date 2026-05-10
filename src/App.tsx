@@ -9,7 +9,6 @@ import Sponsors from "@/pages/Sponsors";
 import News from "@/pages/News";
 import Article from "@/pages/Article";
 import Studio from "./pages/Studio";
-import Download from "@/pages/Download";
 import { HelmetProvider } from "react-helmet-async";
 
 const queryClient = new QueryClient();
@@ -25,7 +24,6 @@ function Router() {
       <Route path="/studio/*" component={Studio} />
       <Route path="/contact" component={Contact} />
       <Route path="/sponsors" component={Sponsors} />
-      <Route path="/download" component={Download} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -36,7 +34,7 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <WouterRouter base={import.meta.env.BASE_URL.replace(//$/, "")}>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
             <Router />
           </WouterRouter>
           <Toaster />
