@@ -8,6 +8,7 @@ import Contact from "@/pages/Contact";
 import Sponsors from "@/pages/Sponsors";
 import News from "@/pages/News";
 import Article from "@/pages/Article";
+import Downloads from "@/pages/Downloads";
 import Studio from "./pages/Studio";
 import { HelmetProvider } from "react-helmet-async";
 
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/news" component={News} />
       <Route path="/news/:slug" component={Article} />
+      <Route path="/downloads" component={Downloads} />
       <Route path="/studio" component={Studio} />
       {/* Fallback pattern to catch all nested studio routes for Sanity */}
       <Route path="/studio/*" component={Studio} />
