@@ -4,9 +4,9 @@ import { Link } from "wouter";
 
 export default function Download() {
   return (
-    <main className="min-h-screen bg-secondary text-white overflow-hidden">
+    <main className="relative min-h-screen bg-secondary text-white overflow-hidden">
       {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '50px 50px' }}></div>
+      <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '50px 50px' }}></div>
       
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center">
         <Link href="/" className="absolute top-8 left-8 inline-flex items-center gap-2 text-white/70 hover:text-primary transition-colors font-semibold tracking-wide">
@@ -22,7 +22,7 @@ export default function Download() {
         >
           <div className="flex justify-center mb-10">
             <div className="relative">
-              <div className="absolute -inset-8 bg-primary/20 rounded-full blur-3xl"></div>
+              <div className="absolute -inset-8 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
               <div className="relative flex h-32 w-32 items-center justify-center rounded-full border-4 border-primary/50 bg-secondary">
                 <Download className="h-16 w-16 text-primary" />
               </div>
