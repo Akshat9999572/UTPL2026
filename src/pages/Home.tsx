@@ -19,6 +19,8 @@ const teamLogos = [
   `${baseUrl}images/franchise-unnao-super-kings.jpg`,
 ];
 const galleryImages = [
+  `${baseUrl}images/gallery-event-11.jpg`,
+  `${baseUrl}images/gallery-event-12.jpg`,
   `${baseUrl}images/gallery-event-1.jpg`,
   `${baseUrl}images/gallery-event-2.jpg`,
   `${baseUrl}images/gallery-event-3.jpg`,
@@ -29,8 +31,6 @@ const galleryImages = [
   `${baseUrl}images/gallery-event-8.jpg`,
   `${baseUrl}images/gallery-event-9.jpg`,
   `${baseUrl}images/gallery-event-10.jpg`,
-  `${baseUrl}images/gallery-event-11.jpg`,
-  `${baseUrl}images/gallery-event-12.jpg`,
 ];
 const championshipPosters = [
   `${baseUrl}images/championship-poster-night-cricket.png`,
