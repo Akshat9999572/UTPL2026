@@ -90,7 +90,6 @@ const navLinks = [
   { name: 'DOWNLOADS', href: '/downloads', externalPage: true },
   { name: 'PRIVACY POLICY', href: '/privacy-policy', externalPage: true },
   { name: 'ABOUT', href: '#about' },
-  { name: 'GALLERY', href: '#gallery' },
   { name: 'CHAMPIONSHIP SPONSORS', href: '/sponsors', externalPage: true },
   { name: 'CONTACT', href: '/contact', externalPage: true },
 ];
@@ -562,7 +561,6 @@ export default function Home() {
               { name: 'DOWNLOADS', href: '/downloads', externalPage: true },
               { name: 'PRIVACY POLICY', href: '/privacy-policy', externalPage: true },
               { name: 'ABOUT', href: '#about' },
-              { name: 'GALLERY', href: '#gallery' },
               { name: 'CONTACT', href: '/contact', externalPage: true },
             ].map((link) => (
               <button key={link.name} onClick={() => handleNavClick(link.href, link.externalPage, link.absoluteExternal)} className="hover:text-primary transition-colors">
