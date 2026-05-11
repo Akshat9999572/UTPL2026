@@ -77,14 +77,27 @@ export default function Downloads() {
           />
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-8 text-white/60 max-w-md text-lg"
+          className="mt-12 flex flex-col items-center gap-6"
         >
-          We are preparing official match schedules, rulebooks, and registration forms for you. Stay tuned!
-        </motion.p>
+          <a 
+            href="https://drive.google.com/file/d/15vd6bFofw3wG3ReDXKpD___3iNSwfwIE/view?usp=drive_link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center gap-3 bg-primary text-secondary px-8 py-4 font-display text-2xl tracking-widest hover:bg-white transition-all duration-300"
+          >
+            <Download className="w-6 h-6 group-hover:bounce" />
+            DOWNLOAD THE APP
+            <div className="absolute -inset-1 border border-primary/30 -z-10 group-hover:inset-0 transition-all"></div>
+          </a>
+          
+          <p className="text-white/60 max-w-md text-lg italic">
+            Official match schedules, rulebooks, and registration forms are coming soon.
+          </p>
+        </motion.div>
       </div>
     </div>
   );

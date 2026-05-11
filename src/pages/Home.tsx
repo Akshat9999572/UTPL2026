@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Trophy, Users, Target, Phone, Mail, MapPin, MessageSquare, ChevronRight } from 'lucide-react';
+import { Menu, X, Trophy, Users, Target, Phone, Mail, MapPin, MessageSquare, ChevronRight, ChevronDown, Download } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import LiveScoresSection from '@/components/LiveScoresSection';
 import LatestNewsSection from '@/components/LatestNewsSection';
 
@@ -87,7 +93,16 @@ const navLinks = [
   { name: 'LIVE SCORES', href: 'https://cricheroes.com/tournament/2012283/urtc-(-unnao-royal-teachers-championship)-2026-season-1st/matches/live-matches', absoluteExternal: true },
   { name: 'SUBMISSION', href: 'https://docs.google.com/forms/d/1535L9dcF9H4FlZ7jY1eIXW-C6IBFxzf0TwWDXKRPT2c', absoluteExternal: true },
   { name: 'NEWS', href: '/news', externalPage: true },
-  { name: 'DOWNLOADS', href: '/downloads', externalPage: true },
+  { 
+    name: 'DOWNLOADS', 
+    href: '/downloads', 
+    externalPage: true,
+    hasDropdown: true,
+    subLinks: [
+      { name: 'DOWNLOAD THE APP', href: 'https://drive.google.com/file/d/15vd6bFofw3wG3ReDXKpD___3iNSwfwIE/view?usp=drive_link', absoluteExternal: true },
+      { name: 'DOCUMENTS', href: '/downloads', externalPage: true }
+    ]
+  },
   { name: 'PRIVACY POLICY', href: '/privacy-policy', externalPage: true },
   { name: 'ABOUT', href: '#about' },
   { name: 'CHAMPIONSHIP SPONSORS', href: '/sponsors', externalPage: true },
@@ -164,13 +179,33 @@ export default function Home() {
           
           <div className="hidden xl:flex items-center gap-6">
             {navLinks.map((link) => (
-              <button 
-                key={link.name}
-                onClick={() => handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal)}
-                className="text-sm font-semibold text-white/80 hover:text-primary transition-colors tracking-wider"
-              >
-                {link.name}
-              </button>
+              (link as any).hasDropdown ? (
+                <DropdownMenu key={link.name}>
+                  <DropdownMenuTrigger className="text-sm font-semibold text-white/80 hover:text-primary transition-colors tracking-wider flex items-center gap-1 focus:outline-none">
+                    {link.name} <ChevronDown size={14} />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-secondary border-white/10 text-white min-w-[200px]">
+                    {(link as any).subLinks.map((sub: any) => (
+                      <DropdownMenuItem 
+                        key={sub.name}
+                        onClick={() => handleNavClick(sub.href, sub.externalPage, sub.absoluteExternal)}
+                        className="hover:bg-primary hover:text-secondary focus:bg-primary focus:text-secondary cursor-pointer font-semibold tracking-wide py-3"
+                      >
+                        {sub.name === 'DOWNLOAD THE APP' && <Download size={14} className="mr-2" />}
+                        {sub.name}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <button 
+                  key={link.name}
+                  onClick={() => handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal)}
+                  className="text-sm font-semibold text-white/80 hover:text-primary transition-colors tracking-wider"
+                >
+                  {link.name}
+                </button>
+              )
             ))}
           </div>
 
@@ -193,13 +228,33 @@ export default function Home() {
             className="fixed inset-0 z-40 bg-secondary pt-24 px-6 flex flex-col gap-6 xl:hidden"
           >
             {navLinks.map((link) => (
-              <button 
-                key={link.name}
-                onClick={() => handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal)}
-                className="text-2xl font-display text-left text-white hover:text-primary transition-colors tracking-wider border-b border-white/10 pb-4"
-              >
-                {link.name}
-              </button>
+              <div key={link.name} className="flex flex-col gap-2">
+                <button 
+                  onClick={() => {
+                    if (!(link as any).hasDropdown) {
+                      handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal);
+                    }
+                  }}
+                  className={`text-2xl font-display text-left text-white hover:text-primary transition-colors tracking-wider border-b border-white/10 pb-4 flex justify-between items-center`}
+                >
+                  {link.name}
+                  {(link as any).hasDropdown && <ChevronDown size={20} className="text-primary" />}
+                </button>
+                {(link as any).hasDropdown && (
+                  <div className="flex flex-col gap-4 pl-4 mt-2 mb-4">
+                    {(link as any).subLinks.map((sub: any) => (
+                      <button
+                        key={sub.name}
+                        onClick={() => handleNavClick(sub.href, sub.externalPage, sub.absoluteExternal)}
+                        className="text-xl font-display text-left text-white/70 hover:text-primary transition-colors tracking-wider flex items-center gap-2"
+                      >
+                        {sub.name === 'DOWNLOAD THE APP' && <Download size={18} className="text-primary" />}
+                        {sub.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </motion.div>
         )}
@@ -552,18 +607,19 @@ export default function Home() {
       <footer className="bg-secondary text-white py-12 border-t-8 border-primary">
         <div className="container mx-auto px-4 text-center">
           <img src={logoSrc} alt="Rotary Club of Unnao Royal Teachers' Championship logo" className="h-24 w-24 object-contain mx-auto mb-6 opacity-70 hover:opacity-100 transition-opacity duration-500" />
-          <div className="flex justify-center gap-6 mb-8 font-display tracking-widest text-lg text-white/50">
+          <div className="flex flex-wrap justify-center gap-6 mb-8 font-display tracking-widest text-lg text-white/50">
             {[
               { name: 'HOME', href: '#home' },
               { name: 'LIVE SCORES', href: 'https://cricheroes.com/tournament/2012283/urtc-(-unnao-royal-teachers-championship)-2026-season-1st/matches/live-matches', absoluteExternal: true },
               { name: 'SUBMISSION', href: 'https://docs.google.com/forms/d/1535L9dcF9H4FlZ7jY1eIXW-C6IBFxzf0TwWDXKRPT2c', absoluteExternal: true },
               { name: 'NEWS', href: '/news', externalPage: true },
+              { name: 'DOWNLOAD THE APP', href: 'https://drive.google.com/file/d/15vd6bFofw3wG3ReDXKpD___3iNSwfwIE/view?usp=drive_link', absoluteExternal: true },
               { name: 'DOWNLOADS', href: '/downloads', externalPage: true },
               { name: 'PRIVACY POLICY', href: '/privacy-policy', externalPage: true },
               { name: 'ABOUT', href: '#about' },
               { name: 'CONTACT', href: '/contact', externalPage: true },
             ].map((link) => (
-              <button key={link.name} onClick={() => handleNavClick(link.href, link.externalPage, link.absoluteExternal)} className="hover:text-primary transition-colors">
+              <button key={link.name} onClick={() => handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal)} className="hover:text-primary transition-colors">
                 {link.name}
               </button>
             ))}
