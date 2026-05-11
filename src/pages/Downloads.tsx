@@ -42,45 +42,9 @@ export default function Downloads() {
         </motion.h1>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="relative"
-        >
-          <motion.p
-            animate={{ 
-              opacity: [0.4, 1, 0.4],
-              scale: [0.98, 1.02, 0.98]
-            }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity,
-              ease: "easeInOut" 
-            }}
-            className="text-2xl md:text-3xl font-display text-primary tracking-[0.2em] uppercase"
-          >
-            Coming Soon...
-          </motion.p>
-          
-          {/* Subtle underline animation */}
-          <motion.div 
-            className="absolute -bottom-2 left-0 h-1 bg-primary/50"
-            animate={{ 
-              width: ["0%", "100%", "0%"],
-              left: ["0%", "0%", "100%"]
-            }}
-            transition={{ 
-              duration: 3, 
-              repeat: Infinity,
-              ease: "easeInOut" 
-            }}
-          />
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 flex flex-col items-center gap-6"
         >
           <a 
@@ -93,10 +57,6 @@ export default function Downloads() {
             DOWNLOAD THE APP
             <div className="absolute -inset-1 border border-primary/30 -z-10 group-hover:inset-0 transition-all"></div>
           </a>
-          
-          <p className="text-white/60 max-w-md text-lg italic">
-            Official match schedules, rulebooks, and registration forms are coming soon.
-          </p>
         </motion.div>
       </div>
     </div>
