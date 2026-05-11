@@ -18,15 +18,15 @@ export default function PrivacyPolicy() {
       icon: Eye,
       title: "How We Use Information",
       content: [
-        "To improve app performance",
+        "To improve website/app performance",
         "To provide tournament updates and features",
-        "To maintain app security and stability"
+        "To maintain website/app security and stability"
       ]
     },
     {
       icon: Globe,
       title: "Third-Party Services",
-      description: "This app may use third-party services such as:",
+      description: "This website/app may use third-party services such as:",
       content: [
         "Google Play Services",
         "Firebase",
@@ -45,7 +45,7 @@ export default function PrivacyPolicy() {
       icon: Heart,
       title: "Children’s Privacy",
       content: [
-        "This app is not intended to collect personal information from children knowingly."
+        "This website/app is not intended to collect personal information from children knowingly."
       ]
     }
   ];
@@ -87,7 +87,7 @@ export default function PrivacyPolicy() {
             </p>
             <div className="max-w-3xl mx-auto p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
               <p className="text-lg text-white/80 leading-relaxed">
-                URTC 2026 respects your privacy. This app is created for providing cricket tournament information, schedules, scores, announcements, and updates.
+                URTC 2026 respects your privacy. This website/app is created for providing cricket tournament information, schedules, scores, announcements, and updates.
               </p>
             </div>
           </motion.div>
