@@ -6,22 +6,22 @@ const baseUrl = import.meta.env.BASE_URL;
 const sponsorLogo = `${baseUrl}images/sponsor-rotary-logo.jpg`;
 const sponsors = [
   {
-    name: "Ashish Shukla",
+    name: "Rotarian Ashish Shukla",
     role: "President",
     image: `${baseUrl}images/sponsor-ashish-shukla.jpg`,
   },
   {
-    name: "DD Shukla",
+    name: "Rotarian DD Shukla",
     role: "Secretary",
     image: `${baseUrl}images/sponsor-dd-shukla.jpg`,
   },
   {
-    name: "Ambarish Tripathi",
+    name: "Rotarian Ambarish Tripathi",
     role: "Treasurer",
     image: `${baseUrl}images/sponsor-ambarish-tripathi.jpg`,
   },
   {
-    name: "Dhirendra Pratap Singh",
+    name: "Rotarian Dhirendra Pratap Singh",
     role: "Convener",
     image: `${baseUrl}images/sponsor-dhirendra-pratap-singh.jpg`,
   },
@@ -72,30 +72,67 @@ export default function Sponsors() {
 
       <section className="py-20">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-            {sponsors.map((member, idx) => (
-              <motion.article
-                key={member.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: idx * 0.08 }}
-                className="overflow-hidden border border-white/10 bg-white/5"
-              >
-                <div className="aspect-[4/5] overflow-hidden bg-white/10">
+          <motion.article
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="relative overflow-hidden border border-primary/40 bg-white text-secondary shadow-2xl"
+          >
+            <div className="absolute inset-x-0 top-0 h-2 bg-primary"></div>
+            <div className="grid gap-8 p-5 sm:p-7 lg:grid-cols-[260px_1fr] lg:p-8">
+              <div className="flex flex-col justify-between gap-6 border-b border-secondary/10 pb-6 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-[0.28em] text-primary">Presented By</p>
+                  <h2 className="mt-3 text-4xl font-display leading-none md:text-5xl">
+                    Rotary Club Of Unnao Royal
+                  </h2>
+                </div>
+                <div className="w-full max-w-[180px] bg-white">
                   <img
-                    src={member.image}
-                    alt={`${member.name}, ${member.role}`}
-                    className="h-full w-full object-cover object-top"
+                    src={sponsorLogo}
+                    alt="Rotary Club of Unnao Royal logo"
+                    className="w-full object-contain"
                   />
                 </div>
-                <div className="border-t border-white/10 px-5 py-5">
-                  <h2 className="text-2xl font-display tracking-wide text-primary">{member.name}</h2>
-                  <p className="mt-2 text-white/75 uppercase tracking-[0.22em] text-sm font-semibold">{member.role}</p>
+              </div>
+
+              <div>
+                <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p className="text-sm font-bold uppercase tracking-[0.24em] text-secondary/50">Championship Sponsors</p>
+                    <h3 className="mt-1 text-3xl font-display text-secondary md:text-4xl">Our Supporters</h3>
+                  </div>
+                  <div className="h-1 w-24 bg-primary"></div>
                 </div>
-              </motion.article>
-            ))}
-          </div>
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                  {sponsors.map((member, idx) => (
+                    <motion.div
+                      key={member.name}
+                      initial={{ opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: idx * 0.07 }}
+                      className="overflow-hidden border border-secondary/10 bg-secondary/[0.03]"
+                    >
+                      <div className="aspect-[4/5] overflow-hidden bg-secondary/10">
+                        <img
+                          src={member.image}
+                          alt={`${member.name}, ${member.role}`}
+                          className="h-full w-full object-cover object-top"
+                        />
+                      </div>
+                      <div className="border-t border-secondary/10 px-4 py-4">
+                        <h4 className="text-2xl font-display leading-tight tracking-wide text-secondary">{member.name}</h4>
+                        <p className="mt-2 text-xs font-bold uppercase tracking-[0.2em] text-secondary/55">{member.role}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.article>
         </div>
       </section>
     </main>
