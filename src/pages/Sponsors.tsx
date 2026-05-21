@@ -27,6 +27,27 @@ const sponsors = [
   },
 ];
 
+const coSponsors = [
+  {
+    name: "Patriot School",
+    type: "Official Co-Sponsor",
+    image: `${baseUrl}images/cosponsor-patriot-school.jpg`,
+    description: "A premier educational institution dedicated to nurturing knowledge, values, and leadership since 1996.",
+  },
+  {
+    name: "National Family Mart and Book Depot",
+    type: "Official Co-Sponsor",
+    image: `${baseUrl}images/cosponsor-national-family-mart.jpg`,
+    description: "Your trusted retail and educational destination for quality books, learning resources, and family essentials.",
+  },
+  {
+    name: "Bamshanker Lal & Sons",
+    type: "Official Co-Sponsor",
+    image: `${baseUrl}images/cosponsor-bamshanker-lal-and-sons.jpg`,
+    description: "A highly trusted name in traditional wellness, offering authentic Ayurvedic medicine and wellness consultations.",
+  },
+];
+
 export default function Sponsors() {
   return (
     <main className="min-h-screen bg-secondary text-white">
@@ -133,6 +154,61 @@ export default function Sponsors() {
               </div>
             </div>
           </motion.article>
+        </div>
+      </section>
+
+      <section className="py-20 border-t border-white/10 bg-white/[0.01]">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <p className="text-primary font-bold tracking-[0.3em] uppercase text-sm">Championship Co-Sponsors</p>
+              <h2 className="mt-4 text-4xl md:text-5xl font-display leading-tight">
+                Our Supporting Partners
+              </h2>
+              <p className="mt-4 text-white/70 text-lg">
+                We are immensely grateful to our distinguished co-sponsors whose generosity and support make this tournament possible.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {coSponsors.map((partner, idx) => (
+              <motion.div
+                key={partner.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="group flex flex-col justify-between overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-primary/50 hover:bg-white/10"
+              >
+                <div className="flex aspect-[16/10] items-center justify-center rounded-2xl bg-white p-6 shadow-lg transition-transform duration-300 group-hover:scale-[1.02]">
+                  <img
+                    src={partner.image}
+                    alt={`${partner.name} logo`}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
+                <div className="mt-6 flex flex-col flex-grow justify-between">
+                  <div>
+                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                      {partner.type}
+                    </span>
+                    <h3 className="mt-2 text-2xl font-display text-white transition-colors duration-300 group-hover:text-primary min-h-[3rem] flex items-center">
+                      {partner.name}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-white/70">
+                      {partner.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </main>
