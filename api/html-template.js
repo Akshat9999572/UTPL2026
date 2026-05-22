@@ -26,8 +26,8 @@ export const htmlTemplate = `<!DOCTYPE html>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-yHDLoR4l.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-ByyXnKc0.css">
+    <script type="module" crossorigin src="/assets/index-BDHXgr8h.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CRTVOSM0.css">
   </head>
   <body>
     <div id="root"></div>

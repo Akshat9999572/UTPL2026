@@ -46,6 +46,18 @@ const coSponsors = [
     image: `${baseUrl}images/cosponsor-bamshanker-lal-and-sons.jpg`,
     description: "A highly trusted name in traditional wellness, offering authentic Ayurvedic medicine and wellness consultations.",
   },
+  {
+    name: "Sameday",
+    type: "Official Co-Sponsor",
+    image: `${baseUrl}images/cosponsor-sameday.jpg`,
+    description: "A trusted local partner supporting the championship spirit with the promise of khushhaal service and community care.",
+  },
+  {
+    name: "The Insurance Hub",
+    type: "Official Co-Sponsor",
+    image: `${baseUrl}images/cosponsor-insurance-hub.jpg`,
+    description: "A dependable insurance partner offering health, life, and general insurance guidance for families and businesses.",
+  },
 ];
 
 export default function Sponsors() {
@@ -176,7 +188,7 @@ export default function Sponsors() {
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {coSponsors.map((partner, idx) => (
               <motion.div
                 key={partner.name}

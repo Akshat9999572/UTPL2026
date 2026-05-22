@@ -1,8 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Download, FileText, Music, Smartphone } from 'lucide-react';
 import { Link } from 'wouter';
 import SEO from '@/components/SEO';
+
+const downloads = [
+  {
+    title: 'DOWNLOAD THE APP',
+    href: 'https://drive.google.com/file/d/15vd6bFofw3wG3ReDXKpD___3iNSwfwIE/view?usp=drive_link',
+    icon: Smartphone,
+    external: true,
+  },
+  {
+    title: 'URTC RULE BOOK 2026',
+    href: `${import.meta.env.BASE_URL}downloads/urtc-rule-book-2026.pdf`,
+    icon: FileText,
+    external: false,
+  },
+  {
+    title: 'URTC ANTHEM SONG',
+    href: `${import.meta.env.BASE_URL}downloads/urtc-anthem.mp3`,
+    icon: Music,
+    external: false,
+  },
+];
 
 export default function Downloads() {
   return (
@@ -45,18 +66,26 @@ export default function Downloads() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 flex flex-col items-center gap-6"
+          className="mt-12 grid w-full max-w-5xl grid-cols-1 gap-5 md:grid-cols-3"
         >
-          <a 
-            href="https://drive.google.com/file/d/15vd6bFofw3wG3ReDXKpD___3iNSwfwIE/view?usp=drive_link" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-3 bg-primary text-secondary px-8 py-4 font-display text-2xl tracking-widest hover:bg-white transition-all duration-300"
-          >
-            <Download className="w-6 h-6 group-hover:bounce" />
-            DOWNLOAD THE APP
-            <div className="absolute -inset-1 border border-primary/30 -z-10 group-hover:inset-0 transition-all"></div>
-          </a>
+          {downloads.map((item, idx) => (
+            <motion.a
+              key={item.title}
+              href={item.href}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
+              download={item.external ? undefined : true}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.55 + idx * 0.1 }}
+              className="group relative flex min-h-44 flex-col items-center justify-center gap-4 border border-primary/30 bg-primary text-secondary px-6 py-8 font-display text-2xl tracking-widest transition-all duration-300 hover:bg-white"
+            >
+              <item.icon className="h-10 w-10" />
+              <span className="leading-tight">{item.title}</span>
+              <Download className="h-5 w-5 opacity-70 transition-transform duration-300 group-hover:translate-y-1" />
+              <div className="absolute -inset-1 -z-10 border border-primary/30 transition-all group-hover:inset-0"></div>
+            </motion.a>
+          ))}
         </motion.div>
       </div>
     </div>
