@@ -9,15 +9,59 @@ const client = createClient({
   useCdn: true,
 });
 
+const SITE_URL = 'https://unnaoteacherscricketclub.xyz';
+const DEFAULT_IMAGE = `${SITE_URL}/opengraph.jpg`;
+
+const pageMeta: Record<string, { title: string; description: string; image: string }> = {
+  '/': {
+    title: "Rotary Club of Unnao Royal Teachers' Championship",
+    description: "Official website of the Rotary Club of Unnao Royal Teachers' Championship. Celebrating cricket and uniting educators in Unnao.",
+    image: '/opengraph.jpg',
+  },
+  '/news': {
+    title: 'Latest News | UTPL 2026',
+    description: "Stay updated with the latest match reports, team news, and announcements from the Unnao Teachers' Cricket Championship.",
+    image: '/images/championship-banner-welcome.jpg',
+  },
+  '/downloads': {
+    title: 'Downloads | UTPL 2026',
+    description: 'Download official UTPL documents, the URTC rule book, anthem song, and tournament resources.',
+    image: '/images/championship-banner-district-level.jpg',
+  },
+  '/contact': {
+    title: 'Contact | UTPL 2026',
+    description: 'Get in touch with the Rotary Club of Unnao Royal Teachers Championship organizing committee.',
+    image: '/images/championship-banner-welcome.jpg',
+  },
+  '/sponsors': {
+    title: 'Championship Sponsors | UTPL 2026',
+    description: 'Meet the sponsors and co-sponsors supporting the Rotary Club of Unnao Royal Teachers Championship.',
+    image: '/images/sponsor-rotary-logo.jpg',
+  },
+  '/privacy-policy': {
+    title: 'Privacy Policy | UTPL 2026',
+    description: 'Read the privacy policy for the Rotary Club of Unnao Royal Teachers Championship website.',
+    image: '/opengraph.jpg',
+  },
+};
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const originalPath = (req.query.originalPath as string) || '/';
   const slug = req.query.slug as string;
 
   let title = "Rotary Club of Unnao Royal Teachers' Championship";
   let description = "Official website of the Rotary Club of Unnao Royal Teachers' Championship. Celebrating cricket and uniting educators in Unnao.";
-  let image = "https://unnaoteacherscricketclub.xyz/og-image.jpg";
+  let image = DEFAULT_IMAGE;
   let type = "website";
-  const url = `https://unnaoteacherscricketclub.xyz${originalPath}`;
+  const url = `${SITE_URL}${originalPath}`;
 
   try {
     if (slug) {
@@ -34,35 +78,42 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         image = post.imageUrl || image;
         type = "article";
       }
-    } else if (originalPath === '/news') {
-      title = "Latest News | UTPL 2026";
-      description = "Stay updated with the latest match reports, team news, and announcements from the Unnao Teachers' Cricket Championship.";
+    } else if (pageMeta[originalPath]) {
+      const meta = pageMeta[originalPath];
+      title = meta.title;
+      description = meta.description;
+      image = meta.image;
     }
 
     // Ensure image is absolute
     if (image && !image.startsWith('http')) {
-      image = `https://unnaoteacherscricketclub.xyz${image.startsWith('/') ? '' : '/'}${image}`;
+      image = `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}`;
     }
+
+    const safeTitle = escapeHtml(title);
+    const safeDescription = escapeHtml(description);
+    const safeImage = escapeHtml(image);
+    const safeUrl = escapeHtml(url);
 
     // Inject metadata into the template
     let html = htmlTemplate;
     
     // Replace standard meta tags
-    html = html.replace(/<title>.*?<\/title>/g, `<title>${title}</title>`);
-    html = html.replace(/<meta name="description" content=".*?" \/>/g, `<meta name="description" content="${description}" />`);
+    html = html.replace(/<title>.*?<\/title>/g, `<title>${safeTitle}</title>`);
+    html = html.replace(/<meta name="description" content=".*?" \/>/g, `<meta name="description" content="${safeDescription}" />`);
     
     // Replace Open Graph tags
-    html = html.replace(/<meta property="og:title" content=".*?" \/>/g, `<meta property="og:title" content="${title}" />`);
-    html = html.replace(/<meta property="og:description" content=".*?" \/>/g, `<meta property="og:description" content="${description}" />`);
-    html = html.replace(/<meta property="og:image" content=".*?" \/>/g, `<meta property="og:image" content="${image}" />`);
-    html = html.replace(/<meta property="og:url" content=".*?" \/>/g, `<meta property="og:url" content="${url}" />`);
+    html = html.replace(/<meta property="og:title" content=".*?" \/>/g, `<meta property="og:title" content="${safeTitle}" />`);
+    html = html.replace(/<meta property="og:description" content=".*?" \/>/g, `<meta property="og:description" content="${safeDescription}" />`);
+    html = html.replace(/<meta property="og:image" content=".*?" \/>/g, `<meta property="og:image" content="${safeImage}" />`);
+    html = html.replace(/<meta property="og:url" content=".*?" \/>/g, `<meta property="og:url" content="${safeUrl}" />`);
     html = html.replace(/<meta property="og:type" content=".*?" \/>/g, `<meta property="og:type" content="${type}" />`);
     
     // Replace Twitter tags
-    html = html.replace(/<meta name="twitter:title" content=".*?" \/>/g, `<meta name="twitter:title" content="${title}" />`);
-    html = html.replace(/<meta name="twitter:description" content=".*?" \/>/g, `<meta name="twitter:description" content="${description}" />`);
-    html = html.replace(/<meta name="twitter:image" content=".*?" \/>/g, `<meta name="twitter:image" content="${image}" />`);
-    html = html.replace(/<meta name="twitter:url" content=".*?" \/>/g, `<meta name="twitter:url" content="${url}" />`);
+    html = html.replace(/<meta name="twitter:title" content=".*?" \/>/g, `<meta name="twitter:title" content="${safeTitle}" />`);
+    html = html.replace(/<meta name="twitter:description" content=".*?" \/>/g, `<meta name="twitter:description" content="${safeDescription}" />`);
+    html = html.replace(/<meta name="twitter:image" content=".*?" \/>/g, `<meta name="twitter:image" content="${safeImage}" />`);
+    html = html.replace(/<meta name="twitter:url" content=".*?" \/>/g, `<meta name="twitter:url" content="${safeUrl}" />`);
 
     res.setHeader('Content-Type', 'text/html');
     res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');

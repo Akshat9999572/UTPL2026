@@ -12,8 +12,10 @@ export default function middleware(request: Request) {
       path === '/' || 
       path === '/news' || 
       path.startsWith('/news/') || 
+      path === '/downloads' ||
       path === '/contact' || 
-      path === '/sponsors'
+      path === '/sponsors' ||
+      path === '/privacy-policy'
     ) {
       // Rewrite to our SEO handler API
       const seoUrl = url.clone();
