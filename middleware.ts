@@ -18,7 +18,7 @@ export default function middleware(request: Request) {
       path === '/privacy-policy'
     ) {
       // Rewrite to our SEO handler API
-      const seoUrl = url.clone();
+      const seoUrl = new URL(url.toString());
       seoUrl.pathname = '/api/seo-handler';
       seoUrl.searchParams.set('originalPath', path);
       
