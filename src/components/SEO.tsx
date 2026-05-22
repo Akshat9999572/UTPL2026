@@ -10,7 +10,7 @@ interface SEOProps {
 
 const DEFAULT_TITLE = "Rotary Club of Unnao Royal Teachers' Championship";
 const DEFAULT_DESCRIPTION = "Official website of the Rotary Club of Unnao Royal Teachers' Championship. Celebrating cricket and uniting educators.";
-const DEFAULT_IMAGE = "https://unnaoteacherscricketclub.xyz/opengraph.jpg";
+const DEFAULT_IMAGE = "https://unnaoteacherscricketclub.xyz/social-preview/home.jpg";
 const DEFAULT_URL = "https://unnaoteacherscricketclub.xyz";
 
 export default function SEO({ 
@@ -38,6 +38,8 @@ export default function SEO({
       <meta property="og:title" content={siteTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={absoluteImage} />
+      <meta property="og:image:secure_url" content={absoluteImage} />
+      <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
 

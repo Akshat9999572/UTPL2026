@@ -10,38 +10,38 @@ const client = createClient({
 });
 
 const SITE_URL = 'https://unnaoteacherscricketclub.xyz';
-const DEFAULT_IMAGE = `${SITE_URL}/opengraph.jpg`;
+const DEFAULT_IMAGE = `${SITE_URL}/social-preview/home.jpg`;
 
 const pageMeta: Record<string, { title: string; description: string; image: string }> = {
   '/': {
     title: "Rotary Club of Unnao Royal Teachers' Championship",
     description: "Official website of the Rotary Club of Unnao Royal Teachers' Championship. Celebrating cricket and uniting educators in Unnao.",
-    image: '/opengraph.jpg',
+    image: '/social-preview/home.jpg',
   },
   '/news': {
     title: 'Latest News | UTPL 2026',
     description: "Stay updated with the latest match reports, team news, and announcements from the Unnao Teachers' Cricket Championship.",
-    image: '/images/championship-banner-welcome.jpg',
+    image: '/social-preview/news-contact.jpg',
   },
   '/downloads': {
     title: 'Downloads | UTPL 2026',
     description: 'Download official UTPL documents, the URTC rule book, anthem song, and tournament resources.',
-    image: '/images/championship-banner-district-level.jpg',
+    image: '/social-preview/downloads.jpg',
   },
   '/contact': {
     title: 'Contact | UTPL 2026',
     description: 'Get in touch with the Rotary Club of Unnao Royal Teachers Championship organizing committee.',
-    image: '/images/championship-banner-welcome.jpg',
+    image: '/social-preview/news-contact.jpg',
   },
   '/sponsors': {
     title: 'Championship Sponsors | UTPL 2026',
     description: 'Meet the sponsors and co-sponsors supporting the Rotary Club of Unnao Royal Teachers Championship.',
-    image: '/images/sponsor-rotary-logo.jpg',
+    image: '/social-preview/sponsors.jpg',
   },
   '/privacy-policy': {
     title: 'Privacy Policy | UTPL 2026',
     description: 'Read the privacy policy for the Rotary Club of Unnao Royal Teachers Championship website.',
-    image: '/opengraph.jpg',
+    image: '/social-preview/home.jpg',
   },
 };
 
@@ -106,6 +106,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     html = html.replace(/<meta property="og:title" content=".*?" \/>/g, `<meta property="og:title" content="${safeTitle}" />`);
     html = html.replace(/<meta property="og:description" content=".*?" \/>/g, `<meta property="og:description" content="${safeDescription}" />`);
     html = html.replace(/<meta property="og:image" content=".*?" \/>/g, `<meta property="og:image" content="${safeImage}" />`);
+    html = html.replace(/<meta property="og:image:secure_url" content=".*?" \/>/g, `<meta property="og:image:secure_url" content="${safeImage}" />`);
+    html = html.replace(/<meta property="og:image:type" content=".*?" \/>/g, `<meta property="og:image:type" content="image/jpeg" />`);
     html = html.replace(/<meta property="og:url" content=".*?" \/>/g, `<meta property="og:url" content="${safeUrl}" />`);
     html = html.replace(/<meta property="og:type" content=".*?" \/>/g, `<meta property="og:type" content="${type}" />`);
     
