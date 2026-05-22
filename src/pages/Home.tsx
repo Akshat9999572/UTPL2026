@@ -41,6 +41,10 @@ const galleryImages = [
 const championshipPosters = [
   `${baseUrl}images/championship-poster-night-cricket.png`,
   `${baseUrl}images/championship-poster-night-lights.png`,
+  `${baseUrl}images/championship-banner-men-behind-scene.jpg`,
+  `${baseUrl}images/championship-banner-district-level.jpg`,
+  `${baseUrl}images/championship-banner-grandeur.jpg`,
+  `${baseUrl}images/championship-banner-welcome.jpg`,
 ];
 const championshipFeaturePoster = `${baseUrl}images/championship-poster-main-event.png`;
 const committeeMembers = [
