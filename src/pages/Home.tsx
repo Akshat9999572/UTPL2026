@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Trophy, Users, Target, Phone, Mail, MapPin, MessageSquare, ChevronRight, ChevronDown, Download } from 'lucide-react';
+import { Menu, X, Trophy, Users, Target, Phone, Mail, MapPin, MessageSquare, ChevronRight, ChevronDown, Download, PlayCircle } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -17,6 +17,8 @@ import LatestNewsSection from '@/components/LatestNewsSection';
 const baseUrl = import.meta.env.BASE_URL;
 const logoSrc = `${baseUrl}utpl-logo.png`;
 const stadiumSrc = `${baseUrl}images/stadium.png`;
+const openingCeremonyVideo = `${baseUrl}videos/urtc-opening-ceremony.mp4`;
+const openingCeremonyPoster = `${baseUrl}videos/urtc-opening-ceremony-poster.jpg`;
 const teamLogos = [
   `${baseUrl}images/franchise-madhyamik-lions.jpg`,
   `${baseUrl}images/franchise-sk-warriors.jpg`,
@@ -129,6 +131,8 @@ import SEO from '@/components/SEO';
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [ceremonyVideoStarted, setCeremonyVideoStarted] = useState(false);
+  const ceremonyVideoRef = React.useRef<HTMLVideoElement>(null);
   const [, setLocation] = useLocation();
 
   useEffect(() => {
@@ -159,6 +163,11 @@ export default function Home() {
       return;
     }
     scrollTo(href);
+  };
+
+  const playCeremonyVideo = () => {
+    setCeremonyVideoStarted(true);
+    requestAnimationFrame(() => ceremonyVideoRef.current?.play());
   };
 
   const fadeUp: any = {
@@ -345,6 +354,61 @@ export default function Home() {
               <div className="text-secondary/80 font-bold tracking-wider">ONE CHAMPION</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* OPENING CEREMONY VIDEO */}
+      <section className="relative overflow-hidden bg-secondary py-20 text-white">
+        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '34px 34px' }}></div>
+        <div className="absolute inset-x-0 top-0 h-1 bg-primary"></div>
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-120px" }}
+            variants={staggerContainer}
+            className="mx-auto max-w-6xl"
+          >
+            <motion.div variants={fadeUp} className="mb-10 text-center">
+              <p className="text-primary font-bold tracking-[0.32em] uppercase text-sm">A Grand Beginning</p>
+              <h2 className="mt-4 text-4xl md:text-6xl lg:text-7xl font-display leading-none">
+                URTC 2026 Opening Ceremony
+              </h2>
+              <div className="mx-auto mt-6 h-1 w-28 bg-primary"></div>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              className="relative rounded-[2rem] border border-primary/40 bg-white/5 p-3 shadow-[0_30px_90px_rgba(0,0,0,0.35)] backdrop-blur-sm"
+            >
+              <div className="absolute -inset-1 rounded-[2.25rem] border border-white/10 pointer-events-none"></div>
+              <div className="relative overflow-hidden rounded-[1.5rem] bg-black">
+                <video
+                  ref={ceremonyVideoRef}
+                  className="aspect-video w-full object-cover"
+                  poster={openingCeremonyPoster}
+                  preload="metadata"
+                  controls={ceremonyVideoStarted}
+                  playsInline
+                >
+                  <source src={openingCeremonyVideo} type="video/mp4" />
+                </video>
+
+                {!ceremonyVideoStarted && (
+                  <button
+                    type="button"
+                    onClick={playCeremonyVideo}
+                    className="absolute inset-0 flex items-center justify-center bg-secondary/25 transition-colors duration-300 hover:bg-secondary/10"
+                    aria-label="Play URTC 2026 opening ceremony video"
+                  >
+                    <span className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-primary bg-primary text-secondary shadow-[0_0_45px_rgba(245,166,35,0.5)] transition-transform duration-300 hover:scale-105">
+                      <PlayCircle className="h-12 w-12" />
+                    </span>
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
