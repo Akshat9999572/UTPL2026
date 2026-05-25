@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Trophy, Users, Target, Phone, Mail, MapPin, MessageSquare, ChevronRight, ChevronDown, Download, PlayCircle } from 'lucide-react';
+import { Menu, X, Trophy, Users, Target, Phone, Mail, MapPin, MessageSquare, ChevronRight, ChevronDown, Download, PlayCircle, ZoomIn, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -131,6 +131,7 @@ import SEO from '@/components/SEO';
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState<number | null>(null);
   const [ceremonyVideoStarted, setCeremonyVideoStarted] = useState(false);
   const ceremonyVideoRef = React.useRef<HTMLVideoElement>(null);
   const [, setLocation] = useLocation();
@@ -144,11 +145,32 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    document.body.style.overflow = mobileMenuOpen || activeGalleryIndex !== null ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, activeGalleryIndex]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (activeGalleryIndex === null) {
+        return;
+      }
+
+      if (event.key === 'Escape') {
+        setActiveGalleryIndex(null);
+      }
+      if (event.key === 'ArrowLeft') {
+        setActiveGalleryIndex((current) => current === null ? current : (current - 1 + galleryImages.length) % galleryImages.length);
+      }
+      if (event.key === 'ArrowRight') {
+        setActiveGalleryIndex((current) => current === null ? current : (current + 1) % galleryImages.length);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeGalleryIndex]);
 
   const scrollTo = (href: string) => {
     setMobileMenuOpen(false);
@@ -175,6 +197,14 @@ export default function Home() {
   const playCeremonyVideo = () => {
     setCeremonyVideoStarted(true);
     requestAnimationFrame(() => ceremonyVideoRef.current?.play());
+  };
+
+  const showPreviousGalleryImage = () => {
+    setActiveGalleryIndex((current) => current === null ? current : (current - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  const showNextGalleryImage = () => {
+    setActiveGalleryIndex((current) => current === null ? current : (current + 1) % galleryImages.length);
   };
 
   const fadeUp: any = {
@@ -624,7 +654,7 @@ export default function Home() {
             <div className="w-24 h-1 bg-primary mt-6"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px]">
+          <div className="grid auto-rows-[220px] grid-cols-2 gap-3 rounded-2xl border border-secondary/10 bg-secondary/5 p-3 shadow-2xl sm:auto-rows-[250px] md:grid-cols-3 md:gap-4 md:p-4 lg:grid-cols-4">
             {galleryImages.map((image, idx) => {
               const featuredClass = idx === 0
                 ? 'md:col-span-2 md:row-span-2'
@@ -633,25 +663,90 @@ export default function Home() {
                   : '';
 
               return (
-                <motion.div
+                <motion.button
+                  type="button"
                   key={image}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: Math.min(idx * 0.05, 0.4) }}
-                  className={`${featuredClass} relative group overflow-hidden bg-muted`}
+                  onClick={() => setActiveGalleryIndex(idx)}
+                  className={`${featuredClass} relative group overflow-hidden rounded-xl bg-muted text-left shadow-md outline-none ring-primary transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-4`}
+                  aria-label={`Open gallery image ${idx + 1}`}
                 >
                   <img src={image} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-secondary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="text-white font-display text-2xl tracking-widest border-2 border-white px-6 py-2">VIEW IMAGE</span>
+                  <div className="absolute inset-0 bg-secondary/55 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"></div>
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                    <span className="rounded-full bg-white/95 px-3 py-1 text-xs font-bold uppercase tracking-wider text-secondary">View</span>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-secondary shadow-lg">
+                      <ZoomIn size={18} />
+                    </span>
                   </div>
-                </motion.div>
+                </motion.button>
               );
             })}
           </div>
           
         </div>
       </section>
+
+      <AnimatePresence>
+        {activeGalleryIndex !== null && (
+          <motion.div
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-secondary/95 p-3 backdrop-blur-md sm:p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Gallery image viewer"
+          >
+            <button
+              type="button"
+              className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-secondary shadow-lg transition-transform hover:scale-105"
+              onClick={() => setActiveGalleryIndex(null)}
+              aria-label="Close gallery image"
+            >
+              <X size={22} />
+            </button>
+
+            <button
+              type="button"
+              className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-secondary shadow-lg transition-transform hover:scale-105 sm:left-6"
+              onClick={showPreviousGalleryImage}
+              aria-label="Previous gallery image"
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            <motion.div
+              key={galleryImages[activeGalleryIndex]}
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              className="relative flex h-full max-h-[86dvh] w-full max-w-6xl items-center justify-center rounded-2xl border border-white/10 bg-black/60 p-2 shadow-2xl sm:p-4"
+            >
+              <img
+                src={galleryImages[activeGalleryIndex]}
+                alt={`Gallery ${activeGalleryIndex + 1}`}
+                className="max-h-full max-w-full rounded-xl object-contain"
+              />
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/95 px-4 py-2 text-xs font-bold uppercase tracking-wider text-secondary shadow-lg">
+                {activeGalleryIndex + 1} / {galleryImages.length}
+              </div>
+            </motion.div>
+
+            <button
+              type="button"
+              className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-secondary shadow-lg transition-transform hover:scale-105 sm:right-6"
+              onClick={showNextGalleryImage}
+              aria-label="Next gallery image"
+            >
+              <ChevronRightIcon size={24} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* CONTACT */}
       <section id="contact" className="py-24 bg-primary relative overflow-hidden">
