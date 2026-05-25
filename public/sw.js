@@ -1,5 +1,5 @@
-const CACHE_NAME = "urtc-2026-v1";
-const APP_SHELL = ["/", "/manifest.webmanifest", "/favicon.svg"];
+const CACHE_NAME = "urtc-2026-v2";
+const APP_SHELL = ["/", "/manifest.webmanifest", "/icons/favicon-32.png", "/icons/icon-192.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

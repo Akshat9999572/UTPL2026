@@ -186,7 +186,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <SEO 
-        title="Rotary Club of Unnao Royal Teachers' Championship"
+        title="URTC 2026"
         description="Official website of the Rotary Club of Unnao Royal Teachers' Championship. Celebrating cricket and uniting educators in Unnao."
         url="/"
       />

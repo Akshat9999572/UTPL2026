@@ -8,7 +8,7 @@ interface SEOProps {
   type?: 'website' | 'article';
 }
 
-const DEFAULT_TITLE = "Rotary Club of Unnao Royal Teachers' Championship";
+const DEFAULT_TITLE = "URTC 2026";
 const DEFAULT_DESCRIPTION = "Official website of the Rotary Club of Unnao Royal Teachers' Championship. Celebrating cricket and uniting educators.";
 const DEFAULT_IMAGE = "https://unnaoteacherscricketclub.xyz/social-preview/home.jpg";
 const DEFAULT_URL = "https://unnaoteacherscricketclub.xyz";
