@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, User, ArrowRight, ChevronRight, Search } from 'lucide-react';
+import { Calendar, User, ArrowRight, Home } from 'lucide-react';
 import { Link } from 'wouter';
 import { client, urlFor } from '../sanity/client';
 
@@ -48,6 +48,11 @@ export default function News() {
               <h1 className="text-4xl md:text-6xl font-display text-white mb-4">LATEST NEWS</h1>
               <p className="text-white/70 max-w-xl text-lg">Official press releases, match reports, and announcements from the UTPL organization.</p>
             </div>
+            <Link href="/">
+              <a className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-5 py-3 text-primary hover:bg-primary hover:text-secondary transition-colors text-sm uppercase tracking-widest font-bold">
+                <Home size={18} /> Home
+              </a>
+            </Link>
           </div>
         </div>
       </div>
