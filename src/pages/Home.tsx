@@ -646,45 +646,78 @@ export default function Home() {
       </section>
 
       {/* GALLERY */}
-      <section id="gallery" className="py-24 bg-background">
+      <section id="gallery" className="relative overflow-hidden bg-background py-24">
+        <div className="absolute inset-x-0 top-0 h-2 bg-primary"></div>
+        <div className="absolute left-0 top-24 hidden h-40 w-24 rounded-r-full border-y-8 border-r-8 border-primary/20 md:block"></div>
+        <div className="absolute bottom-20 right-0 hidden h-40 w-24 rounded-l-full border-y-8 border-l-8 border-primary/20 md:block"></div>
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center text-center mb-16">
             <span className="text-primary font-bold tracking-widest uppercase mb-2">Unforgettable Moments</span>
             <h2 className="text-5xl md:text-6xl font-display text-secondary">MATCH GALLERY</h2>
-            <div className="w-24 h-1 bg-primary mt-6"></div>
+            <div className="mt-6 flex items-center gap-3">
+              <span className="h-1 w-16 bg-secondary/20"></span>
+              <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary shadow-lg">
+                <span className="h-7 w-7 rounded-full border-2 border-secondary/70"></span>
+                <span className="absolute h-8 w-0.5 rotate-12 bg-secondary/60"></span>
+                <span className="absolute h-8 w-0.5 -rotate-12 bg-secondary/60"></span>
+              </span>
+              <span className="h-1 w-16 bg-secondary/20"></span>
+            </div>
           </div>
           
-          <div className="grid auto-rows-[220px] grid-cols-2 gap-3 rounded-2xl border border-secondary/10 bg-secondary/5 p-3 shadow-2xl sm:auto-rows-[250px] md:grid-cols-3 md:gap-4 md:p-4 lg:grid-cols-4">
-            {galleryImages.map((image, idx) => {
-              const featuredClass = idx === 0
-                ? 'md:col-span-2 md:row-span-2'
-                : idx === 1 || idx === 4 || idx === 9
-                  ? 'lg:col-span-2'
-                  : '';
+          <div className="relative rounded-[2rem] bg-secondary p-3 shadow-[0_28px_90px_rgba(10,15,44,0.28)] md:p-5">
+            <div className="absolute inset-0 rounded-[2rem] border-4 border-primary"></div>
+            <div className="absolute inset-3 rounded-[1.5rem] border border-white/15 md:inset-5"></div>
+            <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/15 md:block"></div>
+            <div className="absolute left-1/2 top-1/2 hidden h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 md:block"></div>
+            <div className="absolute -left-3 top-1/2 hidden h-24 w-8 -translate-y-1/2 rounded-r-full border-y-2 border-r-2 border-primary/80 md:block"></div>
+            <div className="absolute -right-3 top-1/2 hidden h-24 w-8 -translate-y-1/2 rounded-l-full border-y-2 border-l-2 border-primary/80 md:block"></div>
 
-              return (
-                <motion.button
-                  type="button"
-                  key={image}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: Math.min(idx * 0.05, 0.4) }}
-                  onClick={() => setActiveGalleryIndex(idx)}
-                  className={`${featuredClass} relative group overflow-hidden rounded-xl bg-muted text-left shadow-md outline-none ring-primary transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-4`}
-                  aria-label={`Open gallery image ${idx + 1}`}
-                >
-                  <img src={image} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-secondary/55 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"></div>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
-                    <span className="rounded-full bg-white/95 px-3 py-1 text-xs font-bold uppercase tracking-wider text-secondary">View</span>
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-secondary shadow-lg">
-                      <ZoomIn size={18} />
-                    </span>
-                  </div>
-                </motion.button>
-              );
-            })}
+            <div className="relative rounded-[1.4rem] bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.11)_1px,transparent_0)] p-3 [background-size:28px_28px] md:p-4">
+              <div className="mb-4 grid grid-cols-3 items-center gap-3 text-primary">
+                <div className="h-1 rounded-full bg-primary"></div>
+                <div className="flex justify-center gap-2">
+                  <span className="h-9 w-2 rounded-full bg-primary"></span>
+                  <span className="h-9 w-2 rounded-full bg-primary"></span>
+                  <span className="h-9 w-2 rounded-full bg-primary"></span>
+                </div>
+                <div className="h-1 rounded-full bg-primary"></div>
+              </div>
+
+              <div className="grid auto-rows-[220px] grid-cols-2 gap-3 sm:auto-rows-[250px] md:grid-cols-3 md:gap-4 lg:grid-cols-4">
+                {galleryImages.map((image, idx) => {
+                  const featuredClass = idx === 0
+                    ? 'md:col-span-2 md:row-span-2'
+                    : idx === 1 || idx === 4 || idx === 9
+                      ? 'lg:col-span-2'
+                      : '';
+
+                  return (
+                    <motion.button
+                      type="button"
+                      key={image}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: Math.min(idx * 0.05, 0.4) }}
+                      onClick={() => setActiveGalleryIndex(idx)}
+                      className={`${featuredClass} relative group overflow-hidden rounded-xl border-2 border-white/10 bg-muted text-left shadow-lg outline-none ring-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary focus-visible:ring-4`}
+                      aria-label={`Open gallery image ${idx + 1}`}
+                    >
+                      <img src={image} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-secondary/55 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"></div>
+                      <div className="absolute left-0 top-0 border-l-[42px] border-t-[42px] border-l-primary border-t-primary/70"></div>
+                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                        <span className="rounded-full bg-white/95 px-3 py-1 text-xs font-bold uppercase tracking-wider text-secondary">Open Full Image</span>
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-secondary shadow-lg">
+                          <ZoomIn size={18} />
+                        </span>
+                      </div>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
           
         </div>

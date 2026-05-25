@@ -37,8 +37,8 @@ export const htmlTemplate = `<!DOCTYPE html>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-BIjHnpF-.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BP5tX537.css">
+    <script type="module" crossorigin src="/assets/index-DbMrAsFw.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CMAWI0V1.css">
   </head>
   <body>
     <div id="root"></div>
