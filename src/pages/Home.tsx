@@ -108,7 +108,6 @@ const franchiseOwners = [
 const navLinks = [
   { name: 'HOME', href: '#home' },
   { name: 'LIVE SCORES', href: 'https://cricheroes.com/tournament/2012283/urtc-(-unnao-royal-teachers-championship)-2026-season-1st/matches/live-matches', absoluteExternal: true },
-  { name: 'SUBMISSION', href: 'https://docs.google.com/forms/d/1535L9dcF9H4FlZ7jY1eIXW-C6IBFxzf0TwWDXKRPT2c', absoluteExternal: true },
   { name: 'NEWS', href: '/news', externalPage: true },
   { 
     name: 'DOWNLOADS', 
@@ -827,7 +826,6 @@ export default function Home() {
             {[
               { name: 'HOME', href: '#home' },
               { name: 'LIVE SCORES', href: 'https://cricheroes.com/tournament/2012283/urtc-(-unnao-royal-teachers-championship)-2026-season-1st/matches/live-matches', absoluteExternal: true },
-              { name: 'SUBMISSION', href: 'https://docs.google.com/forms/d/1535L9dcF9H4FlZ7jY1eIXW-C6IBFxzf0TwWDXKRPT2c', absoluteExternal: true },
               { name: 'NEWS', href: '/news', externalPage: true },
               { name: 'DOWNLOAD THE APP', href: 'https://drive.google.com/file/d/15vd6bFofw3wG3ReDXKpD___3iNSwfwIE/view?usp=drive_link', absoluteExternal: true },
               { name: 'DOWNLOADS', href: '/downloads', externalPage: true },
