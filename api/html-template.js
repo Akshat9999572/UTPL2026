@@ -5,6 +5,11 @@ export const htmlTemplate = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>Rotary Club of Unnao Royal Teachers' Championship</title>
     <meta name="description" content="Official website of the Rotary Club of Unnao Royal Teachers' Championship. Celebrating cricket and uniting educators in Unnao." />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="URTC 2026" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -25,10 +30,12 @@ export const htmlTemplate = `<!DOCTYPE html>
     <meta name="twitter:image" content="https://unnaoteacherscricketclub.xyz/social-preview/home.jpg" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-3mSwsrrj.js"></script>
+    <script type="module" crossorigin src="/assets/index-D1TAbqFc.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-D1EjdmHY.css">
   </head>
   <body>
