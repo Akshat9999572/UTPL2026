@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRoute, Link } from 'wouter';
 import { PortableText } from '@portabletext/react';
-import { Calendar, User, Clock, ArrowLeft, Share2 } from 'lucide-react';
+import { Calendar, User, Clock, ArrowLeft, Share2, Home } from 'lucide-react';
 import { client, urlFor } from '../sanity/client';
 
 const ptComponents = {
@@ -74,9 +74,14 @@ export default function Article() {
     return (
       <div className="min-h-screen bg-secondary flex flex-col items-center justify-center text-white">
         <h1 className="text-4xl font-display mb-4">Article Not Found</h1>
-        <Link href="/news">
-          <a className="text-primary hover:underline flex items-center gap-2"><ArrowLeft size={20} /> Back to News</a>
-        </Link>
+        <div className="flex flex-wrap items-center justify-center gap-5">
+          <Link href="/news">
+            <a className="text-primary hover:underline flex items-center gap-2"><ArrowLeft size={20} /> Back to News</a>
+          </Link>
+          <Link href="/">
+            <a className="text-primary hover:underline flex items-center gap-2"><Home size={20} /> Go Home</a>
+          </Link>
+        </div>
       </div>
     );
   }
@@ -93,11 +98,18 @@ export default function Article() {
       {/* Article Header & Images */}
       <div className="pt-24 md:pt-32 pb-12">
         <div className="container mx-auto px-4 md:px-6">
-          <Link href="/news">
-            <a className="inline-flex items-center gap-2 text-white/70 hover:text-primary transition-colors mb-8 text-sm uppercase tracking-widest font-bold">
-              <ArrowLeft size={16} /> Back to News
-            </a>
-          </Link>
+          <div className="mb-8 flex flex-wrap items-center gap-4">
+            <Link href="/news">
+              <a className="inline-flex items-center gap-2 text-white/70 hover:text-primary transition-colors text-sm uppercase tracking-widest font-bold">
+                <ArrowLeft size={16} /> Back to News
+              </a>
+            </Link>
+            <Link href="/">
+              <a className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-primary hover:bg-primary hover:text-secondary transition-colors text-sm uppercase tracking-widest font-bold">
+                <Home size={16} /> Home
+              </a>
+            </Link>
+          </div>
 
           {/* Image Gallery */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -206,6 +218,13 @@ export default function Article() {
             )}
             
           </div>
+        </div>
+        <div className="mt-16 flex justify-center">
+          <Link href="/">
+            <a className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold uppercase tracking-widest text-secondary shadow-lg transition-transform hover:scale-105">
+              <Home size={18} /> Back to Home
+            </a>
+          </Link>
         </div>
       </div>
     </article>
