@@ -143,6 +143,13 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const scrollTo = (href: string) => {
     setMobileMenuOpen(false);
     const el = document.querySelector(href);
@@ -249,28 +256,29 @@ export default function Home() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-secondary pt-24 px-6 flex flex-col gap-6 xl:hidden"
+            className="fixed inset-0 z-40 max-h-[100dvh] overflow-y-auto overscroll-contain bg-secondary px-5 pb-10 pt-24 xl:hidden"
           >
+            <div className="flex min-h-full flex-col gap-4">
             {navLinks.map((link) => (
-              <div key={link.name} className="flex flex-col gap-2">
+              <div key={link.name} className="flex flex-col gap-1">
                 <button 
                   onClick={() => {
                     if (!(link as any).hasDropdown) {
                       handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal);
                     }
                   }}
-                  className={`text-2xl font-display text-left text-white hover:text-primary transition-colors tracking-wider border-b border-white/10 pb-4 flex justify-between items-center`}
+                  className="flex min-h-12 items-center justify-between border-b border-white/10 pb-3 text-left font-display text-xl tracking-wider text-white transition-colors hover:text-primary sm:text-2xl"
                 >
                   {link.name}
                   {(link as any).hasDropdown && <ChevronDown size={20} className="text-primary" />}
                 </button>
                 {(link as any).hasDropdown && (
-                  <div className="flex flex-col gap-4 pl-4 mt-2 mb-4">
+                  <div className="mb-3 mt-2 flex flex-col gap-3 pl-4">
                     {(link as any).subLinks.map((sub: any) => (
                       <button
                         key={sub.name}
                         onClick={() => handleNavClick(sub.href, sub.externalPage, sub.absoluteExternal)}
-                        className="text-xl font-display text-left text-white/70 hover:text-primary transition-colors tracking-wider flex items-center gap-2"
+                        className="flex min-h-10 items-center gap-2 text-left font-display text-lg tracking-wider text-white/70 transition-colors hover:text-primary sm:text-xl"
                       >
                         {sub.name === 'DOWNLOAD THE APP' && <Download size={18} className="text-primary" />}
                         {sub.name}
@@ -280,6 +288,7 @@ export default function Home() {
                 )}
               </div>
             ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
