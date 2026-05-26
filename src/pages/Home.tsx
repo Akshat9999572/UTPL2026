@@ -261,9 +261,20 @@ export default function Home() {
                 <button 
                   key={link.name}
                   onClick={() => handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal)}
-                  className="text-sm font-semibold text-white/80 hover:text-primary transition-colors tracking-wider"
+                  className={link.name === 'LIVE SCORES'
+                    ? "relative overflow-hidden rounded-full border border-primary/70 bg-primary px-4 py-2 text-sm font-bold tracking-wider text-secondary shadow-[0_0_22px_rgba(245,166,35,0.45)] transition-transform hover:scale-105"
+                    : "text-sm font-semibold text-white/80 hover:text-primary transition-colors tracking-wider"}
                 >
-                  {link.name}
+                  {link.name === 'LIVE SCORES' && (
+                    <>
+                      <span className="absolute inset-y-0 -left-8 w-6 skew-x-[-20deg] bg-white/60 animate-[live-shine_2.2s_linear_infinite]"></span>
+                      <span className="absolute right-2 top-1.5 h-2 w-2 rounded-full bg-red-600 animate-ping"></span>
+                      <span className="absolute right-2 top-1.5 h-2 w-2 rounded-full bg-red-600"></span>
+                    </>
+                  )}
+                  <span className={link.name === 'LIVE SCORES' ? "relative z-10 inline-flex animate-[live-bounce_1.4s_ease-in-out_infinite] items-center gap-2" : ""}>
+                    {link.name}
+                  </span>
                 </button>
               )
             ))}
@@ -296,9 +307,20 @@ export default function Home() {
                       handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal);
                     }
                   }}
-                  className="flex min-h-12 items-center justify-between border-b border-white/10 pb-3 text-left font-display text-xl tracking-wider text-white transition-colors hover:text-primary sm:text-2xl"
+                  className={link.name === 'LIVE SCORES'
+                    ? "relative flex min-h-12 items-center justify-between overflow-hidden rounded-xl border border-primary/60 bg-primary px-4 py-3 text-left font-display text-xl tracking-wider text-secondary shadow-[0_0_24px_rgba(245,166,35,0.35)] sm:text-2xl"
+                    : "flex min-h-12 items-center justify-between border-b border-white/10 pb-3 text-left font-display text-xl tracking-wider text-white transition-colors hover:text-primary sm:text-2xl"}
                 >
-                  {link.name}
+                  {link.name === 'LIVE SCORES' && (
+                    <>
+                      <span className="absolute inset-y-0 -left-8 w-6 skew-x-[-20deg] bg-white/60 animate-[live-shine_2.2s_linear_infinite]"></span>
+                      <span className="absolute right-4 top-3 h-2.5 w-2.5 rounded-full bg-red-600 animate-ping"></span>
+                      <span className="absolute right-4 top-3 h-2.5 w-2.5 rounded-full bg-red-600"></span>
+                    </>
+                  )}
+                  <span className={link.name === 'LIVE SCORES' ? "relative z-10 animate-[live-bounce_1.4s_ease-in-out_infinite]" : ""}>
+                    {link.name}
+                  </span>
                   {(link as any).hasDropdown && <ChevronDown size={20} className="text-primary" />}
                 </button>
                 {(link as any).hasDropdown && (

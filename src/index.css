@@ -139,3 +139,21 @@
     @apply font-display tracking-wider;
   }
 }
+
+@keyframes live-shine {
+  0% {
+    transform: translateX(0) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(260px) skewX(-20deg);
+  }
+}
+
+@keyframes live-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
