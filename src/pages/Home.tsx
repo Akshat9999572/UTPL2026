@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import LiveScoresSection from '@/components/LiveScoresSection';
 import LatestNewsSection from '@/components/LatestNewsSection';
+import { usePwaInstall } from '@/hooks/use-pwa-install';
 
 // Images (Relative to BASE_URL)
 const baseUrl = import.meta.env.BASE_URL;
@@ -115,7 +116,7 @@ const navLinks = [
     externalPage: true,
     hasDropdown: true,
     subLinks: [
-      { name: 'DOWNLOAD THE APP', href: 'https://drive.google.com/file/d/15vd6bFofw3wG3ReDXKpD___3iNSwfwIE/view?usp=drive_link', absoluteExternal: true },
+      { name: 'DOWNLOAD THE APP', href: '#install-app', installApp: true },
       { name: 'DOCUMENTS', href: '/downloads', externalPage: true }
     ]
   },
@@ -134,6 +135,7 @@ export default function Home() {
   const [ceremonyVideoStarted, setCeremonyVideoStarted] = useState(false);
   const ceremonyVideoRef = React.useRef<HTMLVideoElement>(null);
   const [, setLocation] = useLocation();
+  const { installApp } = usePwaInstall();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -193,6 +195,19 @@ export default function Home() {
     scrollTo(href);
   };
 
+  const handleInstallApp = async () => {
+    setMobileMenuOpen(false);
+    const result = await installApp();
+
+    if (result === 'unavailable') {
+      window.alert('Chrome has not made the install prompt available yet. Open the Chrome menu and choose Install page as app to install URTC 2026.');
+    }
+
+    if (result === 'installed') {
+      window.alert('URTC 2026 is already installed on this device.');
+    }
+  };
+
   const playCeremonyVideo = () => {
     setCeremonyVideoStarted(true);
     requestAnimationFrame(() => ceremonyVideoRef.current?.play());
@@ -248,7 +263,7 @@ export default function Home() {
                     {(link as any).subLinks.map((sub: any) => (
                       <DropdownMenuItem 
                         key={sub.name}
-                        onClick={() => handleNavClick(sub.href, sub.externalPage, sub.absoluteExternal)}
+                        onClick={() => sub.installApp ? handleInstallApp() : handleNavClick(sub.href, sub.externalPage, sub.absoluteExternal)}
                         className="hover:bg-primary hover:text-secondary focus:bg-primary focus:text-secondary cursor-pointer font-semibold tracking-wide py-3"
                       >
                         {sub.name === 'DOWNLOAD THE APP' && <Download size={14} className="mr-2" />}
@@ -328,7 +343,7 @@ export default function Home() {
                     {(link as any).subLinks.map((sub: any) => (
                       <button
                         key={sub.name}
-                        onClick={() => handleNavClick(sub.href, sub.externalPage, sub.absoluteExternal)}
+                        onClick={() => sub.installApp ? handleInstallApp() : handleNavClick(sub.href, sub.externalPage, sub.absoluteExternal)}
                         className="flex min-h-10 items-center gap-2 text-left font-display text-lg tracking-wider text-white/70 transition-colors hover:text-primary sm:text-xl"
                       >
                         {sub.name === 'DOWNLOAD THE APP' && <Download size={18} className="text-primary" />}
@@ -849,13 +864,17 @@ export default function Home() {
               { name: 'HOME', href: '#home' },
               { name: 'LIVE SCORES', href: 'https://cricheroes.com/tournament/2012283/urtc-(-unnao-royal-teachers-championship)-2026-season-1st/matches/live-matches', absoluteExternal: true },
               { name: 'NEWS', href: '/news', externalPage: true },
-              { name: 'DOWNLOAD THE APP', href: 'https://drive.google.com/file/d/15vd6bFofw3wG3ReDXKpD___3iNSwfwIE/view?usp=drive_link', absoluteExternal: true },
+              { name: 'DOWNLOAD THE APP', href: '#install-app', installApp: true },
               { name: 'DOWNLOADS', href: '/downloads', externalPage: true },
               { name: 'PRIVACY POLICY', href: '/privacy-policy', externalPage: true },
               { name: 'ABOUT', href: '#about' },
               { name: 'CONTACT', href: '/contact', externalPage: true },
             ].map((link) => (
-              <button key={link.name} onClick={() => handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal)} className="hover:text-primary transition-colors">
+              <button
+                key={link.name}
+                onClick={() => (link as any).installApp ? handleInstallApp() : handleNavClick(link.href, link.externalPage, (link as any).absoluteExternal)}
+                className="hover:text-primary transition-colors"
+              >
                 {link.name}
               </button>
             ))}

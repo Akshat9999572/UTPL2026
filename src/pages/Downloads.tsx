@@ -1,16 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Download, FileText, Music, Smartphone } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Download, FileText, Music, Smartphone } from 'lucide-react';
 import { Link } from 'wouter';
 import SEO from '@/components/SEO';
+import { usePwaInstall } from '@/hooks/use-pwa-install';
 
 const downloads = [
-  {
-    title: 'DOWNLOAD THE APP',
-    href: 'https://drive.google.com/file/d/15vd6bFofw3wG3ReDXKpD___3iNSwfwIE/view?usp=drive_link',
-    icon: Smartphone,
-    external: true,
-  },
   {
     title: 'URTC RULE BOOK 2026',
     href: `${import.meta.env.BASE_URL}downloads/urtc-rule-book-2026.pdf`,
@@ -26,6 +21,20 @@ const downloads = [
 ];
 
 export default function Downloads() {
+  const { installApp, isInstalled } = usePwaInstall();
+
+  const handleInstallApp = async () => {
+    const result = await installApp();
+
+    if (result === 'unavailable') {
+      window.alert('Chrome has not made the install prompt available yet. Open the Chrome menu and choose Install page as app to install URTC 2026.');
+    }
+
+    if (result === 'installed') {
+      window.alert('URTC 2026 is already installed on this device.');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-secondary text-white flex flex-col items-center justify-center relative overflow-hidden">
       <SEO 
@@ -68,6 +77,20 @@ export default function Downloads() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 grid w-full max-w-5xl grid-cols-1 gap-5 md:grid-cols-3"
         >
+          <motion.button
+            type="button"
+            onClick={handleInstallApp}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.55 }}
+            className="group relative flex min-h-44 flex-col items-center justify-center gap-4 border border-primary/30 bg-primary text-secondary px-6 py-8 font-display text-2xl tracking-widest transition-all duration-300 hover:bg-white"
+          >
+            {isInstalled ? <CheckCircle2 className="h-10 w-10" /> : <Smartphone className="h-10 w-10" />}
+            <span className="leading-tight">{isInstalled ? 'APP INSTALLED' : 'DOWNLOAD THE APP'}</span>
+            <Download className="h-5 w-5 opacity-70 transition-transform duration-300 group-hover:translate-y-1" />
+            <div className="absolute -inset-1 -z-10 border border-primary/30 transition-all group-hover:inset-0"></div>
+          </motion.button>
+
           {downloads.map((item, idx) => (
             <motion.a
               key={item.title}
@@ -77,7 +100,7 @@ export default function Downloads() {
               download={item.external ? undefined : true}
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.55 + idx * 0.1 }}
+              transition={{ duration: 0.45, delay: 0.65 + idx * 0.1 }}
               className="group relative flex min-h-44 flex-col items-center justify-center gap-4 border border-primary/30 bg-primary text-secondary px-6 py-8 font-display text-2xl tracking-widest transition-all duration-300 hover:bg-white"
             >
               <item.icon className="h-10 w-10" />
