@@ -4,6 +4,7 @@ import { ArrowLeft, CheckCircle2, Download, FileText, Music, Smartphone } from '
 import { Link } from 'wouter';
 import SEO from '@/components/SEO';
 import { usePwaInstall } from '@/hooks/use-pwa-install';
+import { useToast } from '@/hooks/use-toast';
 
 const downloads = [
   {
@@ -22,16 +23,23 @@ const downloads = [
 
 export default function Downloads() {
   const { installApp, isInstalled } = usePwaInstall();
+  const { toast } = useToast();
 
   const handleInstallApp = async () => {
     const result = await installApp();
 
     if (result === 'unavailable') {
-      window.alert('Chrome has not made the install prompt available yet. Open the Chrome menu and choose Install page as app to install URTC 2026.');
+      toast({
+        title: 'Install URTC 2026',
+        description: 'Tap the install icon in Chrome address bar, or use Chrome menu > Install app. If you see Open in app, it is already installed.',
+      });
     }
 
     if (result === 'installed') {
-      window.alert('URTC 2026 is already installed on this device.');
+      toast({
+        title: 'URTC 2026 is already installed',
+        description: 'Use the Open in app button in Chrome to launch it.',
+      });
     }
   };
 

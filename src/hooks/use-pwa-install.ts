@@ -9,7 +9,19 @@ type BeforeInstallPromptEvent = Event & {
 
 type InstallResult = InstallOutcome | 'installed' | 'unavailable';
 
+let deferredPrompt: BeforeInstallPromptEvent | null = null;
+let installed = false;
+const subscribers = new Set<() => void>();
+
+const notifySubscribers = () => {
+  subscribers.forEach((subscriber) => subscriber());
+};
+
 const isRunningAsInstalledApp = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
   const navigatorWithStandalone = window.navigator as Navigator & { standalone?: boolean };
 
   return (
@@ -18,51 +30,62 @@ const isRunningAsInstalledApp = () => {
   );
 };
 
+if (typeof window !== 'undefined') {
+  const windowWithPwaListener = window as Window & { __urtcPwaInstallListenerReady?: boolean };
+
+  if (!windowWithPwaListener.__urtcPwaInstallListenerReady) {
+    windowWithPwaListener.__urtcPwaInstallListenerReady = true;
+    installed = isRunningAsInstalledApp();
+
+    window.addEventListener('beforeinstallprompt', (event: Event) => {
+      event.preventDefault();
+      deferredPrompt = event as BeforeInstallPromptEvent;
+      notifySubscribers();
+    });
+
+    window.addEventListener('appinstalled', () => {
+      deferredPrompt = null;
+      installed = true;
+      notifySubscribers();
+    });
+  }
+}
+
 export function usePwaInstall() {
-  const [promptEvent, setPromptEvent] = useState<BeforeInstallPromptEvent | null>(null);
-  const [isInstalled, setIsInstalled] = useState(false);
+  const [, setVersion] = useState(0);
 
   useEffect(() => {
-    setIsInstalled(isRunningAsInstalledApp());
-
-    const handleBeforeInstallPrompt = (event: Event) => {
-      event.preventDefault();
-      setPromptEvent(event as BeforeInstallPromptEvent);
-    };
-
-    const handleAppInstalled = () => {
-      setPromptEvent(null);
-      setIsInstalled(true);
-    };
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    window.addEventListener('appinstalled', handleAppInstalled);
+    installed = isRunningAsInstalledApp();
+    const handleChange = () => setVersion((current) => current + 1);
+    subscribers.add(handleChange);
+    handleChange();
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-      window.removeEventListener('appinstalled', handleAppInstalled);
+      subscribers.delete(handleChange);
     };
   }, []);
 
   const installApp = async (): Promise<InstallResult> => {
-    if (isInstalled) {
+    if (installed || isRunningAsInstalledApp()) {
       return 'installed';
     }
 
-    if (!promptEvent) {
+    if (!deferredPrompt) {
       return 'unavailable';
     }
 
+    const promptEvent = deferredPrompt;
     await promptEvent.prompt();
     const choice = await promptEvent.userChoice.catch(() => null);
-    setPromptEvent(null);
+    deferredPrompt = null;
+    notifySubscribers();
 
     return choice?.outcome ?? 'dismissed';
   };
 
   return {
-    canInstall: Boolean(promptEvent),
+    canInstall: Boolean(deferredPrompt),
     installApp,
-    isInstalled,
+    isInstalled: installed,
   };
 }
